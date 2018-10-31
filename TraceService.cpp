@@ -13,7 +13,7 @@ struct MSGITEM
 /////////////////////////////////////////////////////////////////////////////////
 struct tagTraceService
 {
-	CRITICAL_SECTION		cs;										// 锁信息
+	pthread_mutex_t			threadMutex;							// 锁信息
 	std::vector<MSGITEM *>	vecInfoArray;							// 信息消息
 	std::vector<MSGITEM *>	vecNormalArray;							// 普通消息
 	std::vector<MSGITEM *>	vecWarningArray;						// 警告消息
@@ -33,9 +33,6 @@ CTraceService::CTraceService()
 {
 	if (g_TraceService==NULL) {
 		g_TraceService = new tagTraceService;
-		if (g_TraceService!=NULL) {
-			InitializeCriticalSection( &g_TraceService->cs );
-		}
 	}
 }
 
@@ -43,7 +40,6 @@ CTraceService::CTraceService()
 CTraceService::~CTraceService()
 {
 	if (g_TraceService!=NULL) {
-		DeleteCriticalSection( &g_TraceService->cs );
 		delete g_TraceService;
 		g_TraceService = NULL;
 	}
@@ -62,8 +58,8 @@ BOOL traceUpdate()
 	std::vector<MSGITEM *>::iterator Iter;
 
 	// 锁住数据
-	EnterCriticalSection( &g_TraceService->cs );
-
+	pthread_mutex_lock(&g_TraceService->threadMutex);
+	
 	// 存储数据
 	if (vecInfoArray.size())
 	{
@@ -131,7 +127,7 @@ BOOL traceUpdate()
 	}
 
 	// 离开数据区
-	LeaveCriticalSection( &g_TraceService->cs );
+	pthread_mutex_unlock(&g_TraceService->threadMutex);
 	return TRUE;
 }
 
@@ -167,7 +163,7 @@ BOOL traceString(BYTE nType, LPCSTR szMsg, ...)
 	va_end(args);
 
 	// 锁住数据
-	EnterCriticalSection( &g_TraceService->cs );
+	pthread_mutex_lock(&g_TraceService->threadMutex);
 
 	// 存储数据
 	if (nType==TraceLevel_Info) {	
@@ -192,6 +188,6 @@ BOOL traceString(BYTE nType, LPCSTR szMsg, ...)
 	}
 
 	// 离开数据区
-	LeaveCriticalSection( &g_TraceService->cs );
+	pthread_mutex_unlock(&g_TraceService->threadMutex);
 	return TRUE;
 }

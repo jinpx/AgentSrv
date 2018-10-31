@@ -7,5 +7,8 @@ typedef int         BOOL;
 typedef uint8_t		BYTE;
 typedef char		CHAR;
 
+#define FALSE		0
+#define TRUE		1
+
 /////////////////////////////////////////////////////////////////////////////////
 #endif
