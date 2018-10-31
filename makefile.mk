@@ -1,7 +1,7 @@
 ############# OPERATOR ################
 INCLUDE = -I./include
 LIBPATH = 
-LIBFILE = 
+LIBFILE = -lpthread
 EXEFILE = AgentServer
 OBJFILE = TraceService.o main.o
 
