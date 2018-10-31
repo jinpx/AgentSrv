@@ -69,8 +69,8 @@ BOOL traceUpdate()
 		for(Iter = ts->vecInfoArray.begin(); Iter != ts->vecInfoArray.end(); Iter++)
 		{
 			item.nType = (*Iter)->nType;
-			strcpy(item.szTime, (*m_Iter)->szTime);
-			strcpy(item.szText, (*m_Iter)->szText);
+			strcpy(item.szTime, (*item)->szTime);
+			strcpy(item.szText, (*item)->szText);
 			printf("%s £º%s\n", item.szTime,item.szText);
 			delete (MSGITEM *)(*Iter);
 		}
@@ -82,8 +82,8 @@ BOOL traceUpdate()
 		for(Iter = ts->vecNormalArray.begin(); Iter != ts->vecNormalArray.end(); Iter++)
 		{
 			item.nType = (*Iter)->nType;
-			strcpy(item.szTime, (*m_Iter)->szTime);
-			strcpy(item.szText, (*m_Iter)->szText);
+			strcpy(item.szTime, (*item)->szTime);
+			strcpy(item.szText, (*item)->szText);
 			printf("%s £º%s\n", item.szTime,item.szText);
 			delete (MSGITEM *)(*Iter);
 		}
@@ -95,8 +95,8 @@ BOOL traceUpdate()
 		for(Iter = ts->vecWarningArray.begin(); Iter != ts->vecWarningArray.end(); Iter++)
 		{
 			item.nType = (*Iter)->nType;
-			strcpy(item.szTime, (*m_Iter)->szTime);
-			strcpy(item.szText, (*m_Iter)->szText);
+			strcpy(item.szTime, (*item)->szTime);
+			strcpy(item.szText, (*item)->szText);
 			printf("%s £º%s\n", item.szTime,item.szText);
 			delete (MSGITEM *)(*Iter);
 		}
@@ -108,8 +108,8 @@ BOOL traceUpdate()
 		for(Iter = ts->vecExceptionArray.begin(); Iter != ts->vecExceptionArray.end(); Iter++)
 		{
 			item.nType = (*Iter)->nType;
-			strcpy(item.szTime, (*m_Iter)->szTime);
-			strcpy(item.szText, (*m_Iter)->szText);
+			strcpy(item.szTime, (*item)->szTime);
+			strcpy(item.szText, (*item)->szText);
 			printf("%s £º%s\n", item.szTime,item.szText);
 			delete (MSGITEM *)(*Iter);
 		}
@@ -121,8 +121,8 @@ BOOL traceUpdate()
 		for(Iter = ts->vecDebugArray.begin(); Iter != ts->vecDebugArray.end(); Iter++)
 		{
 			item.nType = (*Iter)->nType;
-			strcpy(item.szTime, (*m_Iter)->szTime);
-			strcpy(item.szText, (*m_Iter)->szText);
+			strcpy(item.szTime, (*item)->szTime);
+			strcpy(item.szText, (*item)->szText);
 			printf("%s £º%s\n", item.szTime,item.szText);
 			delete (MSGITEM *)(*Iter);
 		}
