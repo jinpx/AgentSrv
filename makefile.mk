@@ -1,9 +1,9 @@
 ############# OPERATOR ################
-INCLUDE = -I../include
+INCLUDE = -I./include
 LIBPATH = 
 LIBFILE = 
 EXEFILE = AgentServer
-OBJFILE = main.o
+OBJFILE = TraceService.o main.o
 
 all : clean $(EXEFILE)
 
