@@ -148,7 +148,7 @@ BOOL traceString(BYTE nType, LPCSTR szMsg, ...)
 
 	// 数据类型
 	if ( pMsg == NULL ) {
-		return;
+		return FALSE;
 	}
 
 	// 构造类型
