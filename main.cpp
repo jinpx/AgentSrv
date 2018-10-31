@@ -12,6 +12,7 @@ void * threadTraceService( void * param );
 // 主函数应用初始化
 bool mainInitialize()
 {
+	threadShutdown = true;
 	pthread_create( &threadWriteFile, 0, threadTraceService, 0);
 }
 
@@ -26,6 +27,7 @@ int main(int agrv, char** agrc)
 	return 0;
 }
 
+/////////////////////////////////////////////////////////////////////////////////
 // 打印日志线程
 void * threadTraceService( void* param )
 {
@@ -35,7 +37,7 @@ void * threadTraceService( void* param )
 	// 开始运行
 	while( threadShutdown )
 	{
-		BOOL bRet = traceService();
+		BOOL bRet = traceUpdate();
 		if (!bRet) {
 			Sleep(3000);
 			continue;

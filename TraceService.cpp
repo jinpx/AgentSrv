@@ -52,7 +52,7 @@ CTraceService::~CTraceService()
 /////////////////////////////////////////////////////////////////////////////////
 //  ‰≥ˆ»’÷æ
 
-BOOL traceService()
+BOOL traceUpdate()
 {
 	if (g_TraceService == NULL)
 		return FALSE;
