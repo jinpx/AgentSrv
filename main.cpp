@@ -29,7 +29,7 @@ int main(int agrv, char** agrc)
 
 /////////////////////////////////////////////////////////////////////////////////
 // 打印日志线程
-void * threadTraceService( void* param )
+void * threadTraceService( void * param )
 {
 	// 初始化参数
 	CTraceService tarceService;

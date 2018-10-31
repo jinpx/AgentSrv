@@ -1,3 +1,4 @@
+#include <Utility.h>
 #include <TraceService.h>
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -53,81 +54,83 @@ BOOL traceUpdate()
 	if (g_TraceService == NULL)
 		return FALSE;
 	
+	tagTraceService * ts = g_TraceService;
+
 	// 变量
 	MSGITEM item;
 	std::vector<MSGITEM *>::iterator Iter;
 
 	// 锁住数据
-	pthread_mutex_lock(&g_TraceService->threadMutex);
+	pthread_mutex_lock(&ts->threadMutex);
 	
 	// 存储数据
-	if (vecInfoArray.size())
+	if (ts->vecInfoArray.size())
 	{
-		for(Iter = vecInfoArray.begin(); Iter != vecInfoArray.end(); Iter++)
+		for(Iter = ts->vecInfoArray.begin(); Iter != ts->vecInfoArray.end(); Iter++)
 		{
-			item.nType = (*m_Iter)->nType;
+			item.nType = (*Iter)->nType;
 			strcpy(item.szTime, (*m_Iter)->szTime);
 			strcpy(item.szText, (*m_Iter)->szText);
 			printf("%s ：%s\n", item.szTime,item.szText);
-			delete (LOGITEM *)(*m_Iter);
+			delete (MSGITEM *)(*Iter);
 		}
-		vecInfoArray.clear();
+		ts->vecInfoArray.clear();
 	}
 
-	if (vecNormalArray.size())
+	if (ts->vecNormalArray.size())
 	{
-		for(Iter = vecNormalArray.begin(); Iter != vecNormalArray.end(); Iter++)
+		for(Iter = ts->vecNormalArray.begin(); Iter != ts->vecNormalArray.end(); Iter++)
 		{
-			item.nType = (*m_Iter)->nType;
+			item.nType = (*Iter)->nType;
 			strcpy(item.szTime, (*m_Iter)->szTime);
 			strcpy(item.szText, (*m_Iter)->szText);
 			printf("%s ：%s\n", item.szTime,item.szText);
-			delete (LOGITEM *)(*m_Iter);
+			delete (MSGITEM *)(*Iter);
 		}
-		vecNormalArray.clear();
+		ts->vecNormalArray.clear();
 	}
 
-	if (vecInfoArray.size())
+	if (ts->vecInfoArray.size())
 	{
-		for(Iter = vecWarningArray.begin(); Iter != vecWarningArray.end(); Iter++)
+		for(Iter = ts->vecWarningArray.begin(); Iter != ts->vecWarningArray.end(); Iter++)
 		{
-			item.nType = (*m_Iter)->nType;
+			item.nType = (*Iter)->nType;
 			strcpy(item.szTime, (*m_Iter)->szTime);
 			strcpy(item.szText, (*m_Iter)->szText);
 			printf("%s ：%s\n", item.szTime,item.szText);
-			delete (LOGITEM *)(*m_Iter);
+			delete (MSGITEM *)(*Iter);
 		}
-		vecWarningArray.clear();
+		ts->vecWarningArray.clear();
 	}
 
-	if (vecInfoArray.size())
+	if (ts->vecInfoArray.size())
 	{
-		for(Iter = vecExceptionArray.begin(); Iter != vecExceptionArray.end(); Iter++)
+		for(Iter = ts->vecExceptionArray.begin(); Iter != ts->vecExceptionArray.end(); Iter++)
 		{
-			item.nType = (*m_Iter)->nType;
+			item.nType = (*Iter)->nType;
 			strcpy(item.szTime, (*m_Iter)->szTime);
 			strcpy(item.szText, (*m_Iter)->szText);
 			printf("%s ：%s\n", item.szTime,item.szText);
-			delete (LOGITEM *)(*m_Iter);
+			delete (MSGITEM *)(*Iter);
 		}
-		vecExceptionArray.clear();
+		ts->vecExceptionArray.clear();
 	}
 
-	if (vecDebugArray.size())
+	if (ts->vecDebugArray.size())
 	{
-		for(Iter = vecDebugArray.begin(); Iter != vecDebugArray.end(); Iter++)
+		for(Iter = ts->vecDebugArray.begin(); Iter != ts->vecDebugArray.end(); Iter++)
 		{
-			item.nType = (*m_Iter)->nType;
+			item.nType = (*Iter)->nType;
 			strcpy(item.szTime, (*m_Iter)->szTime);
 			strcpy(item.szText, (*m_Iter)->szText);
 			printf("%s ：%s\n", item.szTime,item.szText);
-			delete (LOGITEM *)(*m_Iter);
+			delete (MSGITEM *)(*Iter);
 		}
-		vecDebugArray.clear();
+		ts->vecDebugArray.clear();
 	}
 
 	// 离开数据区
-	pthread_mutex_unlock(&g_TraceService->threadMutex);
+	pthread_mutex_unlock(&ts->threadMutex);
 	return TRUE;
 }
 
@@ -138,7 +141,7 @@ BOOL traceUpdate()
 BOOL traceString(BYTE nType, LPCSTR szMsg, ...)
 {
 	if ( g_TraceService == NULL )
-		return;
+		return FALSE;
 		
 	MSGITEM * pMsg = new MSGITEM;
 	assert(pMsg);

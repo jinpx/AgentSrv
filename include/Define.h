@@ -6,6 +6,7 @@
 typedef int         BOOL;
 typedef uint8_t		BYTE;
 typedef char		CHAR;
+typedef char *		LPCSTR;
 
 #define FALSE		0
 #define TRUE		1
