@@ -174,23 +174,18 @@ BOOL traceString(BYTE nType, LPCSTR szMsg, ...)
 	// 存储数据
 	if (nType==TraceLevel_Info) {
 		g_TraceService->vecInfoArray.push_back(pMsg);
-		return TRUE;
 	}
 	else if (nType==TraceLevel_Normal) {	
 		g_TraceService->vecNormalArray.push_back(pMsg);
-		return TRUE;
 	}
 	else if (nType==TraceLevel_Warning) {	
 		g_TraceService->vecWarningArray.push_back(pMsg);
-		return TRUE;
 	}
 	else if (nType==TraceLevel_Exception) {	
 		g_TraceService->vecExceptionArray.push_back(pMsg);
-		return TRUE;
 	}
 	else if (nType==TraceLevel_Debug) {	
 		g_TraceService->vecDebugArray.push_back(pMsg);
-		return TRUE;
 	}
 
 	// 离开数据区
