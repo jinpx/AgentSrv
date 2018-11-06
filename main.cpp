@@ -27,7 +27,7 @@ int main(int agrv, char** agrc)
 	// 开始运行
 	while( true )
 	{
-		nCountPrint++;
+		nPrintCount++;
 		traceString(TraceLevel_Info,"print %d", nPrintCount);
 		Sleep(1500);
 	}
@@ -48,9 +48,10 @@ void * threadTraceService( void * param )
 	{
 		BOOL bRet = traceUpdate();
 		if (!bRet) {
-			Sleep(3000);
+			Sleep(3000L);
 			continue;
 		}
+		return NULL;
 	}
-	return 0;
+	return NULL;
 }
