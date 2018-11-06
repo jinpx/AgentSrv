@@ -160,7 +160,7 @@ BOOL traceString(BYTE nType, LPCSTR szMsg, ...)
 	// 构造时间
 	time_t now = time(NULL);
 	struct tm* sysTime = localtime(&now);
-	sprintf(pMsg->szTime,"%d.%d.%d %d:%d:%d", sysTime->tm_year+1900, sysTime->tm_mon+1, 
+	sprintf(pMsg->szTime,"%0.4d.%0.2d.%0.2d %0.2d:%0.2d:%0.2d", sysTime->tm_year+1900, sysTime->tm_mon+1, 
 		sysTime->tm_mday, sysTime->tm_hour, sysTime->tm_min, sysTime->tm_sec);
 
 	va_list args;
