@@ -15,7 +15,10 @@ bool mainInitialize()
 	pthread_create( &threadPrintData, 0, threadTraceService, 0);
 }
 
+// 日志参数
+CTraceService tarceService;
 /////////////////////////////////////////////////////////////////////////////////
+
 // 主函数
 int main(int agrv, char** agrc)
 {
@@ -40,14 +43,12 @@ int main(int agrv, char** agrc)
 // 打印日志线程
 void * threadTraceService( void * param )
 {	
-	// 日志参数
-	CTraceService tarceService;
-
 	// 开始运行
 	while( threadShutdown )
 	{
 		BOOL bRet = traceUpdate();
-		if (!bRet) {
+		if (bRet==TRUE) 
+		{
 			Sleep(3000L);
 			continue;
 		}
