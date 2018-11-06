@@ -61,8 +61,11 @@ BOOL traceUpdate()
 	std::vector<MSGITEM *>::iterator Iter;
 
 	// 锁住数据
-	pthread_mutex_lock(&ts->threadMutex);
-	
+	if (pthread_mutex_trylock(&mutex_)!=0) {
+		printf("trylock == 0 \n");
+		return TRUE;
+	}
+
 	// 存储数据
 	if (ts->vecInfoArray.size())
 	{
