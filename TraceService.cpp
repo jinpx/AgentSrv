@@ -61,7 +61,7 @@ BOOL traceUpdate()
 	std::vector<MSGITEM *>::iterator Iter;
 
 	// Ëø×¡Êý¾Ý
-	if (pthread_mutex_trylock(&mutex_)!=0) {
+	if (pthread_mutex_trylock(&ts->threadMutex)!=0) {
 		printf("trylock == 0 \n");
 		return TRUE;
 	}
