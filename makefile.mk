@@ -3,7 +3,7 @@ INCLUDE = -I./include
 LIBPATH = 
 LIBFILE = -lpthread
 EXEFILE = AgentServer
-OBJFILE = TraceService.o main.o
+OBJFILE = IniFile.o TraceService.o main.o
 
 all : clean $(EXEFILE)
 
@@ -14,6 +14,7 @@ clean :
 $(EXEFILE) : $(OBJFILE)
 	g++ -w $(OBJFILE) -o  $(EXEFILE) $(INCLUDE) $(LIBPATH) $(LIBFILE)
 	cp  $(EXEFILE) ../bin/
+	mv  $(EXEFILE)
 	-rm -f *.o
 	#################### Succeed! ###############################
 	
