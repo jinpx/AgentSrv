@@ -169,7 +169,7 @@ BOOL traceString(BYTE nType, LPCSTR szMsg, ...)
 	pthread_mutex_lock(&g_TraceService->threadMutex);
 
 	// ´æ´¢Êý¾Ý
-	if (nType==TraceLevel_Info) {	""
+	if (nType==TraceLevel_Info) {
 		g_TraceService->vecInfoArray.push_back(pMsg);
 		return TRUE;
 	}
