@@ -28,7 +28,7 @@ int main(int agrv, char** agrc)
 	while( true )
 	{
 		nCountPrint++;
-		traceString(TraceLevel_Info,"print %d", nCountPrint);
+		traceString(TraceLevel_Info,"print %d", nPrintCount);
 		Sleep(1500);
 	}
 
