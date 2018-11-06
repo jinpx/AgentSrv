@@ -22,14 +22,14 @@ int main(int agrv, char** agrc)
 	// 初始化
 	mainInitialize();
 	
+	static UINT nPrintCount = 0;
+
 	// 开始运行
 	while( true )
 	{
+		nCountPrint++;
 		traceString(TraceLevel_Info,"print %d", nCountPrint);
-		if (!bRet) {
-			Sleep(1500);
-			continue;
-		}
+		Sleep(1500);
 	}
 
 	printf( "%d( %s )\n", agrv, agrc[0]);
