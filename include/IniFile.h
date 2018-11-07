@@ -22,12 +22,12 @@ public:
 	// 最新函数
 public:
 	// 更新数据
-	void Update():
+	void Update();
 
 	// 获取字串
 	const char * GetString(const char * sect, const char * key, const char * defaultValue = "");
 	// 设置字符
-	void SetString(const char * sect, const char * key, const char * value;
+	void SetString(const char * sect, const char * key, const char * value);
 
 	// 获取整型
     int GetInteger(const char* sect, const char* key, int defaultValue = 0);
