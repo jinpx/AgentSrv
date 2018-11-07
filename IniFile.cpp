@@ -128,7 +128,7 @@ const char* CIniFile::GetString(const char* sect, const char* key, const char* d
 } 
 
 // 设置字符
-void IniFile::SetString(const char* sect, const char* key, const char* value) 
+void CIniFile::SetString(const char* sect, const char* key, const char* value) 
 { 
 	string mapkey = sect; 
 	mapkey += MIDDLESTRING; 
@@ -147,7 +147,7 @@ void IniFile::SetString(const char* sect, const char* key, const char* value)
 // 整型系例
 
 // 获取整型
-int IniFile::GetInteger(const char* sect, const char* key, int iValue ) 
+int CIniFile::GetInteger(const char* sect, const char* key, int iValue ) 
 { 
 	const char *value = GetString(sect, key, NULL); 
 	if (NULL == value) { 
@@ -157,7 +157,7 @@ int IniFile::GetInteger(const char* sect, const char* key, int iValue )
 } 
 
 // 设置整型
-void IniFile::SetInteger(const char* sect, const char* key, int iValue) 
+void CIniFile::SetInteger(const char* sect, const char* key, int iValue) 
 { 
 	char szValue[25] = {0}; 
 	sprintf(szValue, "%d", iValue); 
@@ -168,7 +168,7 @@ void IniFile::SetInteger(const char* sect, const char* key, int iValue)
 // 浮点型系例
 
 // 获取浮点型
-double IniFile::GetDouble(const char* sect, const char* key, double dValue ) 
+double CIniFile::GetDouble(const char* sect, const char* key, double dValue ) 
 { 
 	const char *value = GetString(sect, key, NULL); 
 	if (NULL == value) { 
@@ -178,7 +178,7 @@ double IniFile::GetDouble(const char* sect, const char* key, double dValue )
 } 
 
 // 设置浮点型
-void IniFile::SetDouble(const char* sect, const char* key, double dValue) 
+void CIniFile::SetDouble(const char* sect, const char* key, double dValue) 
 { 
 	char szValue[25] = {0}; 
 	sprintf(szValue, "%f", dValue); 
@@ -189,7 +189,7 @@ void IniFile::SetDouble(const char* sect, const char* key, double dValue)
 // 布尔型系例
 
 // 获取布尔型
-bool IniFile::GetBool(const char* sect, const char* key, bool bValue ) 
+bool CIniFile::GetBool(const char* sect, const char* key, bool bValue ) 
 { 
 	const char *value = GetString(sect, key, NULL); 
 	if (NULL == value) { 
@@ -199,7 +199,7 @@ bool IniFile::GetBool(const char* sect, const char* key, bool bValue )
 } 
 
 // 设置布尔型
-void IniFile::SetBool(const char* sect, const char* key, bool bValue) 
+void CIniFile::SetBool(const char* sect, const char* key, bool bValue) 
 { 
 	char szValue[2] = {0}; 
 	szValue[0] = '0'; 
@@ -211,7 +211,7 @@ void IniFile::SetBool(const char* sect, const char* key, bool bValue)
 // 删除键值
 
 // 删除键值
-void IniFile::DeleteKey(const char* sect, const char* key) 
+void CIniFile::DeleteKey(const char* sect, const char* key) 
 { 
 	string mapkey = sect; 
 	mapkey += MIDDLESTRING; 
@@ -224,7 +224,7 @@ void IniFile::DeleteKey(const char* sect, const char* key)
 } 
 
 // 删除段值
-void IniFile::DeleteSession(const char* sect) 
+void CIniFile::DeleteSession(const char* sect) 
 { 
 	strMapIt it; 
 	string sSess, strSect; 
@@ -242,7 +242,7 @@ void IniFile::DeleteSession(const char* sect)
 
 /////////////////////////////////////////////////////////////////////////////////
 // 打开文件
-bool IniFile::OpenIni(const char* iniFile) 
+bool CIniFile::OpenIni(const char* iniFile) 
 { 
 	FILE* fp = fopen(iniFile, "rb");
 
@@ -271,7 +271,7 @@ bool IniFile::OpenIni(const char* iniFile)
 
 /////////////////////////////////////////////////////////////////////////////////
 // 写入文件
-bool IniFile::WriteIni(const char* iniFile) 
+bool CIniFile::WriteIni(const char* iniFile) 
 { 
 	if (ini_map_.empty()) 
 	{ 

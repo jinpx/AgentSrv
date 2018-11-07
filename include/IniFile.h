@@ -23,6 +23,7 @@ public:
 public:
 	// 更新数据
 	void Update():
+
 	// 获取字串
 	const char * GetString(const char * sect, const char * key, const char * defaultValue = "");
 	// 设置字符
