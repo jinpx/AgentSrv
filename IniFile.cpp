@@ -3,7 +3,7 @@
 #include <vector> 
 #include <map> 
 #include <algorithm> 
-#include <string> 
+#include <string.h> 
 
 /////////////////////////////////////////////////////////////////////////////////
 typedef map<string, string, less<string> >		strMap; 
