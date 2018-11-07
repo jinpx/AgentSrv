@@ -14,8 +14,7 @@ clean :
 $(EXEFILE) : $(OBJFILE)
 	g++ -w $(OBJFILE) -o  $(EXEFILE) $(INCLUDE) $(LIBPATH) $(LIBFILE)
 	cp  $(EXEFILE) ../bin/
-	mv  $(EXEFILE)
-	-rm -f *.o
+	-rm -f *.o $(EXEFILE)
 	#################### Succeed! ###############################
 	
 .cpp.o:
