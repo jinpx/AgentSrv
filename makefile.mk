@@ -3,7 +3,7 @@ INCLUDE = -I./include
 LIBPATH = 
 LIBFILE = -lpthread
 EXEFILE = AgentServer
-OBJFILE = IniFile.o TraceService.o main.o
+OBJFILE = CircuitLock.o SocketOpt.o IniFile.o TraceService.o main.o
 
 all : clean $(EXEFILE)
 
