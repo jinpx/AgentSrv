@@ -24,8 +24,14 @@ using namespace __gnu_cxx;
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/socket.h>
+#include <sys/epoll.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <list>
+#include <string.h>	
 
 /////////////////////////////////////////////////////////////////////////////////
 #include <unistd.h>	
