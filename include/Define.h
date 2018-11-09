@@ -8,6 +8,7 @@ typedef uint8_t				BYTE;
 typedef char				CHAR;
 typedef char *				LPCSTR;
 typedef unsigned int        UINT;
+typedef unsigned int        DWORD;
 
 /////////////////////////////////////////////////////////////////////////////////
 #define FALSE				0
