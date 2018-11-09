@@ -79,7 +79,7 @@ public:
 		pthread_cond_wait(&cond_, &lock->mutex_);
 	}
 	// µÈ´ýÊ±¼ä
-	inline bool Wait(TLock* lock, int seconds)
+	inline bool Wait(CCircuitLock* lock, int seconds)
 	{
 		timespec tv;
 		tv.tv_nsec = 0;
