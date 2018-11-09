@@ -111,7 +111,7 @@ public:
 		lock_.Lock();
 	}
 	// Îö¹¹º¯Êý
-	~TGuard() {
+	~CCircuitGuard() {
 		lock_.Unlock();
 	}
 };
