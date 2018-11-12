@@ -11,6 +11,13 @@ typedef unsigned int        UINT;
 typedef unsigned int        DWORD;
 typedef int					SOCKET;
 typedef uint32_t			UINT32;
+typedef uint16_t			WORD;
+typedef uint32_t			DWORD;
+typedef uint16_t			USHORT;
+
+/////////////////////////////////////////////////////////////////////////////////
+typedef struct				sockaddr_in SOCKADDR_IN;
+typedef struct				sockaddr SOCKADDR;
 
 /////////////////////////////////////////////////////////////////////////////////
 #define FALSE				0

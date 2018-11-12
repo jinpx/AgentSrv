@@ -29,8 +29,8 @@ public:
 	int						m_iCategory;					// 协议类型
 	int						m_iProtocol;					// 协议参数
 	int						m_iSize;						// 字节大小
-	TLock					m_lockRecv;						// 接收锁
-	TLock					m_lockSend;						// 发送锁
+	CCircuitLock			m_lockRecv;						// 接收锁
+	CCircuitLock			m_lockSend;						// 发送锁
 	BOOL					m_bCanSend;						// 可否发送
 	UINT64					m_dwTotalRecvBytes;				// 总共接收到的数据字节数
 	UINT64					m_dwTotalSendBytes;				// 总共接收到的数据字节数
@@ -153,3 +153,6 @@ private:
 		m_dwLastSyncTick = GetTickCount(); 
 	}
 };
+
+/////////////////////////////////////////////////////////////////////////////////
+#endif
