@@ -9,6 +9,8 @@ typedef char				CHAR;
 typedef char *				LPCSTR;
 typedef unsigned int        UINT;
 typedef unsigned int        DWORD;
+typedef int					SOCKET;
+typedef uint32_t			UINT32;
 
 /////////////////////////////////////////////////////////////////////////////////
 #define FALSE				0
