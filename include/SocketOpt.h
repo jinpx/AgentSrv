@@ -1,7 +1,9 @@
 #ifndef _SocketOpt_Headfile_
 #define _SocketOpt_Headfile_
 
+#include <Utility.h>
 /////////////////////////////////////////////////////////////////////////////////
+
 namespace SocketOpt
 {
 	// Create file descriptor for socket i/o operations.
@@ -35,4 +37,5 @@ namespace SocketOpt
 	void ReuseAddr(SOCKET fd);
 };
 
+/////////////////////////////////////////////////////////////////////////////////
 #endif
