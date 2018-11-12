@@ -33,7 +33,7 @@ public:
 	{ }
 
 	// Îö¹¹º¯Êý
-	virtual ~CircuitQueue {
+	virtual ~CircuitQueue() {
 		if (m_pData) {
 			delete[] m_pData;
 		}

@@ -3,6 +3,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 #pragma once
+class NetworkObject;
 class SendBuffer;
 class RecvBuffer;
 
@@ -16,6 +17,7 @@ class Session
 	
 	// 参数变量
 public:
+	NetworkObject			*m_pNetworkObject;				// 网络对象
 	SendBuffer				*m_pSendBuffer;					// 发送缓存	
 	RecvBuffer				*m_pRecvBuffer;					// 接收缓存
 	SOCKET					m_socket;						// 网络句柄

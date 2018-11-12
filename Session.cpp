@@ -1,5 +1,6 @@
 #include "CircuitLock.h"
 #include "Network.h"
+#include "SocketOpt.h"
 #include "RecvBuffer.h"
 #include "SendBuffer.h"
 #include "Session.h"

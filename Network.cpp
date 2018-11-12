@@ -1,6 +1,6 @@
 #include "CircuitLock.h"
-#include "Network.h"
 #include "Session.h"
+#include "Network.h"
 
 // ¹¹Ôìº¯Êý
 NetworkObject::NetworkObject()
