@@ -1,4 +1,5 @@
 #include "SocketOpt.h"
+#include <Utility.h>
 #include <sys/ioctl.h>
 
 namespace SocketOpt
