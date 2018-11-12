@@ -1,4 +1,5 @@
 #include "CircuitLock.h"
+#include "Network.h"
 #include "RecvBuffer.h"
 #include "SendBuffer.h"
 #include "Session.h"
@@ -141,7 +142,7 @@ BOOL Session::OnSend()
 
 /////////////////////////////////////////////////////////////////////////////////
 // Ô¤±¸·¢ËÍ
-BOOL Session::OnSend()
+BOOL Session::PreSend()
 {
 	if (!m_bRemove && m_bCanSend && m_pSendBuffer->IsReadyToSend()) {
 		struct epoll_event event;
