@@ -10,7 +10,8 @@ typedef struct tagPACKET_HEADER
 	WORD		size;			// 数据包大小
 } PACKET_HEADER;
 
-
+class Session;
+class IoHandler;
 /////////////////////////////////////////////////////////////////////////////////
 // 网络对象
 

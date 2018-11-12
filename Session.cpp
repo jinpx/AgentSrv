@@ -143,7 +143,7 @@ BOOL Session::OnSend()
 
 /////////////////////////////////////////////////////////////////////////////////
 // Ô¤±¸·¢ËÍ
-BOOL Session::PreSend()
+BOOL Session::PreSend(IoHandler* pIoHandler)
 {
 	if (!m_bRemove && m_bCanSend && m_pSendBuffer->IsReadyToSend()) {
 		struct epoll_event event;
