@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <assert.h>
-#include <CircuitLock.h>
+#include <ThreadLock.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 // —≠ª∑∂”¡–
