@@ -142,23 +142,23 @@ BOOL CSession::OnSend()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 预备发送
-BOOL CSession::PreSend(CServerHandler* pIoHandler)
+BOOL CSession::PreSend(CServerHandler* pHandler)
 {
 	if (!m_bRemove && m_bCanSend && m_pSendBuffer->IsReadyToSend()) {
 		struct epoll_event event;
 		event.events = 0x800;
 		event.data.ptr = this;
-		pIoHandler->AddIoEvent(&event);	
+		pHandler->AddIoEvent(&event);	
 	}
     return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // 预备发送
-BOOL CSession::DoSend(CServerHandler* pIoHandler)
+BOOL CSession::DoSend(CServerHandler* pHandler)
 {
 	// 自动锁
-	CCircuitlGuard gd( m_lockSend );
+	CThreadGuard gd( m_lockSend );
 	
 	// 发送配置
 	if ( m_bCanSend && m_bRemove == FALSE )
@@ -185,7 +185,7 @@ BOOL CSession::DoSend(CServerHandler* pIoHandler)
 		if (ret < len) {
 			m_bCanSend = FALSE;
 			DWORD event = EPOLLIN | EPOLLOUT | EPOLLET | EPOLLERR | EPOLLHUP;
-			pIoHandler->ModEpollEvent(this,  event);
+			pHandler->ModEpollEvent(this,  event);
 			OnLogString("[CSession::DoSend] send ret = %d, len = %d EAGAIN.", ret, len);
 		}
 
@@ -200,7 +200,7 @@ BOOL CSession::DoSend(CServerHandler* pIoHandler)
 BOOL CSession::DoRecv()
 {
 	// 自动锁
-	CCircuitlGuard gd( m_lockRecv );
+	CThreadGuard gd( m_lockRecv );
 	
 	BYTE* buf;
 	int ret = 0, len = 0;
@@ -277,7 +277,7 @@ void CSession::UnbindNetworkObject()
 		return;
 	}
 
-	m_pNetworkObject->SetCSession( NULL );
+	m_pNetworkObject->SetSession( NULL );
 	m_pNetworkObject = NULL;
 }
 
@@ -295,7 +295,7 @@ void CSession::OnAccept()
 void CSession::OnConnect( BOOL bSuccess )
 {
 	Init();
-	NetworkObject *pNetworkObject = m_pNetworkObject;
+	CNetworkObject *pNetworkObject = m_pNetworkObject;
 	if( !bSuccess ) {	
 		UnbindNetworkObject();
 	}

@@ -5,7 +5,8 @@ LIBFILE = -lpthread
 EXEFILE = AgentServer
 OBJFILE = TraceService.o ThreadLock.o SocketOpt.o IniFile.o \
 		  Network.o Session.o ServerSession.o LogonSession.o GameSession.o \
-		  PacketHandler.o ServerInfo.o main.o
+		  PacketHandler.o ServerInfo.o ServerHandler.o \
+		  main.o
 
 
 all : clean $(EXEFILE)
