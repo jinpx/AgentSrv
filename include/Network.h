@@ -57,7 +57,7 @@ private:
 	// 打印日志
 	virtual void OnLogString( char *pszLog ) {}
 	// 设置会话
-	inline void	SetSession( Session *pSession ) { 
+	inline void	SetSession( CSession *pSession ) { 
 		m_pSession = pSession; 
 	}
 };
