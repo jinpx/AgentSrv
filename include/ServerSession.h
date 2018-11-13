@@ -4,7 +4,6 @@
 #pragma once
 /////////////////////////////////////////////////////////////////////////////////
 #include <Network.h>
-#include <PacketStruct.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
@@ -29,7 +28,7 @@ enum eSERVER_TYPE
 class CServerSession : public CNetworkObject
 {
 	// 服务器友元
-	friend class CAgentSrv;
+	// friend class CAgentSrv;
 	
 	// 参数变量
 private:
