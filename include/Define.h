@@ -30,6 +30,10 @@ typedef unsigned short		USHORT;
 typedef char				*LPSTR, *PSTR;
 typedef const char			*LPCSTR, *PCSTR;
 
+typedef void				VOID, *LPVOID;
+typedef long				LONG;
+typedef unsigned long		ULONG;
+
 /////////////////////////////////////////////////////////////////////////////////
 typedef struct				sockaddr_in SOCKADDR_IN;
 typedef struct				sockaddr SOCKADDR;
