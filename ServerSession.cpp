@@ -3,19 +3,19 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 // 构造函数
-ServerSession::ServerSession()
+CServerSession::CServerSession()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // 析构函数
-ServerSession::~ServerSession()
+CServerSession::~CServerSession()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // 构造函数
-VOID ServerSession::Clear()
+VOID CServerSession::Clear()
 {
 	m_dwSessionIndex			= 0;
 	m_wConnectPort				= 0;
@@ -27,7 +27,7 @@ VOID ServerSession::Clear()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 初始数据
-VOID ServerSession::Init()
+VOID CServerSession::Init()
 {
 	m_dwSessionIndex			= 0;
 	m_wConnectPort				= 0;
@@ -39,14 +39,14 @@ VOID ServerSession::Init()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 释放数据
-VOID ServerSession::Release()
+VOID CServerSession::Release()
 {
 	m_strConnectIP.clear();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // 更新数据
-VOID ServerSession::Update()
+VOID CServerSession::Update()
 {
 	if( IsForConnect() )
 	{
@@ -66,7 +66,7 @@ VOID ServerSession::Update()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 设置连接
-VOID ServerSession::OnConnect( BOOL bSuccess, DWORD dwNetworkIndex )
+VOID CServerSession::OnConnect( BOOL bSuccess, DWORD dwNetworkIndex )
 {
 	if( bSuccess )
 	{
@@ -79,7 +79,7 @@ VOID ServerSession::OnConnect( BOOL bSuccess, DWORD dwNetworkIndex )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 监听网络
-VOID ServerSession::OnAccept( DWORD dwNetworkIndex )
+VOID CServerSession::OnAccept( DWORD dwNetworkIndex )
 {
 	SetForConnect( FALSE );
 	SetSessionIndex( dwNetworkIndex );
@@ -89,7 +89,7 @@ VOID ServerSession::OnAccept( DWORD dwNetworkIndex )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 断开连接
-VOID ServerSession::OnDisconnect()
+VOID CServerSession::OnDisconnect()
 {
 	ServerSessionManager::Instance()->RemoveServer( GetSessionIndex() );
 	m_bConnection = FALSE;
@@ -97,7 +97,7 @@ VOID ServerSession::OnDisconnect()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 发送类型
-VOID ServerSession::SendServerType()
+VOID CServerSession::SendServerType()
 {
 	MSG_SERVER_TYPE		msg;
 	msg.m_byCategory	= 0;
@@ -108,7 +108,7 @@ VOID ServerSession::SendServerType()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 设置地址
-VOID ServerSession::SetAddr( char *pszIP, WORD wPort )
+VOID CServerSession::SetAddr( char *pszIP, WORD wPort )
 {
 	m_strConnectIP = pszIP;
 	m_wConnectPort = wPort;
@@ -116,7 +116,7 @@ VOID ServerSession::SetAddr( char *pszIP, WORD wPort )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 尝试连接
-VOID ServerSession::TryToConnect()
+VOID CServerSession::TryToConnect()
 {
 	if( m_strConnectIP.empty() ) {
 		return;
@@ -126,7 +126,7 @@ VOID ServerSession::TryToConnect()
 	// g_pAgentServer->ConnectToServer( this, (char*)m_strConnectIP.c_str(), m_wConnectPort );
 }
 
-VOID ServerSession::OnLogString( char *pszLog )
+VOID CServerSession::OnLogString( char *pszLog )
 {
 	AddLogMsg( LOG_OUT, pszLog );
 }
