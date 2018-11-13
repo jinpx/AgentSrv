@@ -4,6 +4,7 @@
 #include "RecvBuffer.h"
 #include "SendBuffer.h"
 #include "Session.h"
+#include "ServerHandler.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 // ¹¹Ôìº¯Êý
@@ -266,7 +267,7 @@ SOCKET CSession::CreateSocket()
 void CSession::BindNetworkObject( CNetworkObject *pNetworkObject )
 {
 	m_pNetworkObject = pNetworkObject;
-	pNetworkObject->SetCSession( this );
+	pNetworkObject->SetSession( this );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
