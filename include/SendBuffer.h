@@ -28,7 +28,7 @@ public:
 		if( m_pQueue ) {
 			delete m_pQueue;
 		}
-		m_pQueue = new CircuitQueue<BYTE>;
+		m_pQueue = new CCircuitQueue<BYTE>;
 		m_pQueue->Create( nBufferSize, dwExtraBuffeSize );
 		m_bComplete = TRUE;
 	}

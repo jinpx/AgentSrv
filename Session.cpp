@@ -9,10 +9,10 @@
 // 构造函数
 CSession::CSession( DWORD dwSendBufferSize, DWORD dwRecvBufferSize, DWORD dwMaxPacketSize, DWORD dwTimeOut )
 {
-	m_pSendBuffer = new SendBuffer;
+	m_pSendBuffer = new CSendBuffer;
 	m_pSendBuffer->Create( dwSendBufferSize, dwMaxPacketSize );
 
-	m_pRecvBuffer = new RecvBuffer;
+	m_pRecvBuffer = new CRecvBuffer;
 	m_pRecvBuffer->Create( dwRecvBufferSize, dwMaxPacketSize );
 
 	m_dwTimeOut			= dwTimeOut;
@@ -63,8 +63,7 @@ BOOL CSession::SendEx( DWORD dwNumberOfMessages, BYTE **ppMsg, WORD *pwSize )
 	header.size = 0;
 	DWORD i;
 	
-	for( i = 0; i < dwNumberOfMessages; ++i )
-	{
+	for( i = 0; i < dwNumberOfMessages; ++i ) {
 		header.size += pwSize[i];
 	}
 	
@@ -92,8 +91,8 @@ BOOL CSession::SendEx( DWORD dwNumberOfMessages, BYTE **ppMsg, WORD *pwSize )
 // 接收处理
 BOOL CSession::ProcessRecvdPacket( DWORD dwMaxPacketSize )
 {
-	BYTE			*pPacket;
-	PACKET_HEADER	*pHeader;
+	BYTE			* pPacket;
+	PACKET_HEADER	* pHeader;
 
 	// 接收数据包
 	while( pPacket = GetRecvBuffer()->GetFirstPacketPtr() )
@@ -143,7 +142,7 @@ BOOL CSession::OnSend()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 预备发送
-BOOL CSession::PreSend(IoHandler* pIoHandler)
+BOOL CSession::PreSend(CServerHandler* pIoHandler)
 {
 	if (!m_bRemove && m_bCanSend && m_pSendBuffer->IsReadyToSend()) {
 		struct epoll_event event;
@@ -156,7 +155,7 @@ BOOL CSession::PreSend(IoHandler* pIoHandler)
 
 /////////////////////////////////////////////////////////////////////////////////
 // 预备发送
-BOOL CSession::DoSend(IoHandler* pIoHandler)
+BOOL CSession::DoSend(CServerHandler* pIoHandler)
 {
 	// 自动锁
 	CCircuitlGuard gd( m_lockSend );
@@ -264,7 +263,7 @@ SOCKET CSession::CreateSocket()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 绑定句柄
-void CSession::BindNetworkObject( NetworkObject *pNetworkObject )
+void CSession::BindNetworkObject( CNetworkObject *pNetworkObject )
 {
 	m_pNetworkObject = pNetworkObject;
 	pNetworkObject->SetCSession( this );
