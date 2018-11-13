@@ -25,7 +25,16 @@ class CLogonServer;													// 登录服务
 
 class CServerHandler
 {
+	// 参数变量
 public:
+	
+	// 服务器
+	CUserServer			*m_pUserServer;								// 用户会话
+	CGameServer			*m_pGameServer;								// 游戏会话
+	CLogonServer		*m_pLogonServer;							// 登录会话
+	BOOL				m_bShutdown;
+
+	// 事件控制
 	DWORD				m_dwKey;
 	int					m_epoll;									// epoll fd 
 	DWORD				m_numIoThreads;								// IO 
@@ -39,10 +48,18 @@ public:
 	virtual ~CServerHandler();
 
 public:
-	// 服务器连接
-	DWORD Connect(CNetworkObject * pNetworkObject, char * pszIP, WORD wPort);
+	// 初始化连接
+	void Init();
 	// 监听用户
 	BOOL StartListen(char * pszIP, WORD wPort);
+	// 更新数据
+	void Update();
+	// 关闭服务
+	void Shutdown();
+	// 是否运行
+	BOOL IsRunning() { return !m_bShutdown; }
+	// 服务器连接
+	DWORD Connect(CNetworkObject * pNetworkObject, char * pszIP, WORD wPort);
 
 public:
 	// 添加事件
