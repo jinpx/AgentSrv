@@ -1,4 +1,4 @@
-#include "CircuitLock.h"
+#include "ThreadLock.h"
 #include "Network.h"
 #include "SocketOpt.h"
 #include "RecvBuffer.h"
