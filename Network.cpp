@@ -1,4 +1,4 @@
-#include "CircuitLock.h"
+#include "ThreadLock.h"
 #include "Session.h"
 #include "Network.h"
 
