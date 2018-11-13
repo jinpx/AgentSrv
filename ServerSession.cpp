@@ -58,7 +58,7 @@ VOID CServerSession::Update()
 
 			MSG_HEARTBEAT msg;
 			msg.m_byCategory		= 0;
-			msg.m_byProtocol		= SERVERCOMMON_HEARTBEAT;
+			msg.m_byProtocol		= 1;
 			Send( (BYTE*)&msg, sizeof(MSG_HEARTBEAT) );
 		}
 	}
@@ -72,7 +72,7 @@ VOID CServerSession::OnConnect( BOOL bSuccess, DWORD dwNetworkIndex )
 	{
 		SetForConnect( TRUE );
 		SetSessionIndex( dwNetworkIndex );
-		ServerSessionManager::Instance()->AddServer( this );
+		// ServerSessionManager::Instance()->AddServer( this );
 		m_bConnection = TRUE;
 	}
 }
@@ -83,7 +83,7 @@ VOID CServerSession::OnAccept( DWORD dwNetworkIndex )
 {
 	SetForConnect( FALSE );
 	SetSessionIndex( dwNetworkIndex );
-	ServerSessionManager::Instance()->AddServer( this );
+	// ServerSessionManager::Instance()->AddServer( this );
 	m_bConnection = TRUE;
 }
 
@@ -128,5 +128,5 @@ VOID CServerSession::TryToConnect()
 
 VOID CServerSession::OnLogString( char *pszLog )
 {
-	AddLogMsg( LOG_OUT, pszLog );
+	// AddLogMsg( LOG_OUT, pszLog );
 }
