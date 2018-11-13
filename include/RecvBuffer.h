@@ -13,11 +13,11 @@ private:
 
 public:
 	// 构造函数
-	RecvBuffer() { 
+	CRecvBuffer() { 
 		m_pQueue = NULL;
 	}
 	// 析构函数
-	virtual ~RecvBuffer() {
+	virtual ~CRecvBuffer() {
 		if( m_pQueue ) {
 			delete m_pQueue; 
 		}

@@ -14,11 +14,11 @@ private:
 
 public:
 	// 构造函数
-	SendBuffer() { 
+	CSendBuffer() { 
 		m_pQueue = NULL;
 	}
 	// 析构函数
-	virtual ~SendBuffer() {
+	virtual ~CSendBuffer() {
 		if( m_pQueue ) {
 			delete m_pQueue; 
 		}
