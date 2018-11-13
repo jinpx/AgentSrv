@@ -3,7 +3,7 @@
 #include "SocketOpt.h"
 #include "RecvBuffer.h"
 #include "SendBuffer.h"
-#include "CSession.h"
+#include "Session.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 // ¹¹Ôìº¯Êý
