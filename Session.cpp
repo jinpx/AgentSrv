@@ -3,11 +3,11 @@
 #include "SocketOpt.h"
 #include "RecvBuffer.h"
 #include "SendBuffer.h"
-#include "Session.h"
+#include "CSession.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 // 构造函数
-Session::Session( DWORD dwSendBufferSize, DWORD dwRecvBufferSize, DWORD dwMaxPacketSize, DWORD dwTimeOut )
+CSession::CSession( DWORD dwSendBufferSize, DWORD dwRecvBufferSize, DWORD dwMaxPacketSize, DWORD dwTimeOut )
 {
 	m_pSendBuffer = new SendBuffer;
 	m_pSendBuffer->Create( dwSendBufferSize, dwMaxPacketSize );
@@ -23,7 +23,7 @@ Session::Session( DWORD dwSendBufferSize, DWORD dwRecvBufferSize, DWORD dwMaxPac
 
 /////////////////////////////////////////////////////////////////////////////////
 // 析构函数
-Session::~Session()
+CSession::~CSession()
 {
 	CloseSocket();
 
@@ -40,7 +40,7 @@ Session::~Session()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 发送数据
-BOOL Session::Send( BYTE *pMsg, WORD wSize )
+BOOL CSession::Send( BYTE *pMsg, WORD wSize )
 {
 	PACKET_HEADER header;
 	header.size = wSize;
@@ -57,7 +57,7 @@ BOOL Session::Send( BYTE *pMsg, WORD wSize )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 发送数据
-BOOL Session::SendEx( DWORD dwNumberOfMessages, BYTE **ppMsg, WORD *pwSize )
+BOOL CSession::SendEx( DWORD dwNumberOfMessages, BYTE **ppMsg, WORD *pwSize )
 {
 	PACKET_HEADER header;
 	header.size = 0;
@@ -90,7 +90,7 @@ BOOL Session::SendEx( DWORD dwNumberOfMessages, BYTE **ppMsg, WORD *pwSize )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 接收处理
-BOOL Session::ProcessRecvdPacket( DWORD dwMaxPacketSize )
+BOOL CSession::ProcessRecvdPacket( DWORD dwMaxPacketSize )
 {
 	BYTE			*pPacket;
 	PACKET_HEADER	*pHeader;
@@ -131,9 +131,9 @@ BOOL Session::ProcessRecvdPacket( DWORD dwMaxPacketSize )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 发送判断
-BOOL Session::OnSend()
+BOOL CSession::OnSend()
 {
-	OnLogString("[Session::OnSend]");
+	OnLogString("[CSession::OnSend]");
 	
 	m_lockSend.Lock();
 	m_bCanSend = TRUE;
@@ -143,7 +143,7 @@ BOOL Session::OnSend()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 预备发送
-BOOL Session::PreSend(IoHandler* pIoHandler)
+BOOL CSession::PreSend(IoHandler* pIoHandler)
 {
 	if (!m_bRemove && m_bCanSend && m_pSendBuffer->IsReadyToSend()) {
 		struct epoll_event event;
@@ -156,7 +156,7 @@ BOOL Session::PreSend(IoHandler* pIoHandler)
 
 /////////////////////////////////////////////////////////////////////////////////
 // 预备发送
-BOOL Session::DoSend(IoHandler* pIoHandler)
+BOOL CSession::DoSend(IoHandler* pIoHandler)
 {
 	// 自动锁
 	CCircuitlGuard gd( m_lockSend );
@@ -178,7 +178,7 @@ BOOL Session::DoSend(IoHandler* pIoHandler)
 				ret = 0;
 			}
 			else {
-				OnLogString("[Session::DoSend] send error = %d .", errno);				
+				OnLogString("[CSession::DoSend] send error = %d .", errno);				
 				return FALSE;
 			}
 		}
@@ -187,7 +187,7 @@ BOOL Session::DoSend(IoHandler* pIoHandler)
 			m_bCanSend = FALSE;
 			DWORD event = EPOLLIN | EPOLLOUT | EPOLLET | EPOLLERR | EPOLLHUP;
 			pIoHandler->ModEpollEvent(this,  event);
-			OnLogString("[Session::DoSend] send ret = %d, len = %d EAGAIN.", ret, len);
+			OnLogString("[CSession::DoSend] send ret = %d, len = %d EAGAIN.", ret, len);
 		}
 
 		// 发送完成
@@ -198,7 +198,7 @@ BOOL Session::DoSend(IoHandler* pIoHandler)
 
 /////////////////////////////////////////////////////////////////////////////////
 // 接收数据
-BOOL Session::DoRecv()
+BOOL CSession::DoRecv()
 {
 	// 自动锁
 	CCircuitlGuard gd( m_lockRecv );
@@ -209,7 +209,7 @@ BOOL Session::DoRecv()
 	{
 		m_pRecvBuffer->GetRecvParam( &buf, len );
 		if (len <= 0) {
-			OnLogString("[Session::OnRecv] no more recv buffer." );
+			OnLogString("[CSession::OnRecv] no more recv buffer." );
 			Remove(); 
 			return FALSE;		
 		}
@@ -219,11 +219,11 @@ BOOL Session::DoRecv()
 		if( ret == SOCKET_ERROR  )
 		{
 			if ( errno == EAGAIN ) {
-				OnLogString("[Session::OnRecv] recv error = EAGAIN .");
+				OnLogString("[CSession::OnRecv] recv error = EAGAIN .");
 				return TRUE;
 			}	
 			else {		
-				OnLogString("[Session::OnRecv] recv error = %d .", errno);
+				OnLogString("[CSession::OnRecv] recv error = %d .", errno);
 				Remove(); 
 				return FALSE;
 			}
@@ -231,7 +231,7 @@ BOOL Session::DoRecv()
 		
 		// 移除数据
 		if (ret == 0) {
-			OnLogString("[Session::OnRecv] recv ret = 0.");
+			OnLogString("[CSession::OnRecv] recv ret = 0.");
 			Remove();
 			return FALSE;
 		}
@@ -247,7 +247,7 @@ BOOL Session::DoRecv()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 创建句柄
-SOCKET Session::CreateSocket() 
+SOCKET CSession::CreateSocket() 
 {
 	int nRet		= 0;
 	int nZero		= 0;
@@ -264,27 +264,27 @@ SOCKET Session::CreateSocket()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 绑定句柄
-void Session::BindNetworkObject( NetworkObject *pNetworkObject )
+void CSession::BindNetworkObject( NetworkObject *pNetworkObject )
 {
 	m_pNetworkObject = pNetworkObject;
-	pNetworkObject->SetSession( this );
+	pNetworkObject->SetCSession( this );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // 解绑句柄
-void Session::UnbindNetworkObject()
+void CSession::UnbindNetworkObject()
 {
 	if( m_pNetworkObject == NULL ) {
 		return;
 	}
 
-	m_pNetworkObject->SetSession( NULL );
+	m_pNetworkObject->SetCSession( NULL );
 	m_pNetworkObject = NULL;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // 监听数据
-void Session::OnAccept()
+void CSession::OnAccept()
 {
 	ResetKillFlag();
 	ResetTimeOut();
@@ -293,7 +293,7 @@ void Session::OnAccept()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 设置连接
-void Session::OnConnect( BOOL bSuccess )
+void CSession::OnConnect( BOOL bSuccess )
 {
 	Init();
 	NetworkObject *pNetworkObject = m_pNetworkObject;
@@ -305,7 +305,7 @@ void Session::OnConnect( BOOL bSuccess )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 打印日志
-void Session::OnLogString( char *pszLog, ... )
+void CSession::OnLogString( char *pszLog, ... )
 {
 	if( !m_pNetworkObject ) {
 		return;
@@ -324,7 +324,7 @@ void Session::OnLogString( char *pszLog, ... )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 断开连接
-void Session::Disconnect( BOOL bGracefulDisconnect )
+void CSession::Disconnect( BOOL bGracefulDisconnect )
 { 
 	if( bGracefulDisconnect )  { 
 		OnLogString("[REMOVE][%d] bGracefulDisconnect\n", (int)GetSocket()); 

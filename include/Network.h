@@ -28,9 +28,9 @@ private:
 
 public:
 	// 构造函数
-	NetworkObject();
+	CNetworkObject();
 	// 析构函数
-	virtual ~NetworkObject();
+	virtual ~CNetworkObject();
 	// 关闭连接
 	void Disconnect( BOOL bGracefulDisconnect = TRUE );
 	// 发送数据

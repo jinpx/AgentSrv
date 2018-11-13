@@ -1,8 +1,10 @@
 #ifndef _Session_Headfile_
 #define _Session_Headfile_
 
-/////////////////////////////////////////////////////////////////////////////////
 #pragma once
+#include "SocketOpt.h"
+/////////////////////////////////////////////////////////////////////////////////
+
 class CNetworkObject;
 class CServerHandler;
 class CSendBuffer;
@@ -11,7 +13,7 @@ class CRecvBuffer;
 /////////////////////////////////////////////////////////////////////////////////
 // 会话类型
 
-class Session
+class CSession
 {
 	// 友元类型
 	friend void* io_thread( void* param );
@@ -40,9 +42,9 @@ public:
 
 public:
 	// 构造函数
-	Session( DWORD dwSendBufferSize, DWORD dwRecvBufferSize, DWORD dwMaxPacketSize, DWORD dwTimeOut );
+	CSession( DWORD dwSendBufferSize, DWORD dwRecvBufferSize, DWORD dwMaxPacketSize, DWORD dwTimeOut );
 	// 析构函数
-	virtual ~Session();
+	virtual ~CSession();
 
 	// 初始化数据
 	void					Init();
