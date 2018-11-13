@@ -63,13 +63,13 @@ public:
 
 public:
 	// 添加事件
-	void AddIoEvent(struct epoll_event* pEvent);
+	void AddIoEvent(struct epoll_event * pEvent);
 	// 修改事件
-	int	 ModEpollEvent(Session *pSession, DWORD nEvent );
+	int	 ModEpollEvent(CSession *pSession, DWORD nEvent );
 	// 添加事件
-	int	 AddEpollEvent(Session *pSession );
+	int	 AddEpollEvent(CSession *pSession );
 	// 删除事件
-	void DelEpollEvent(Session *pSession );
+	void DelEpollEvent(CSession *pSession );
 };
 
 #endif

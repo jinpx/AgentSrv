@@ -185,8 +185,8 @@ BOOL CSession::DoSend(CServerHandler* pHandler)
 
 		if (ret < len) {
 			m_bCanSend = FALSE;
-			DWORD event = EPOLLIN | EPOLLOUT | EPOLLET | EPOLLERR | EPOLLHUP;
-			pHandler->ModEpollEvent(this,  event);
+			DWORD nEvent = EPOLLIN | EPOLLOUT | EPOLLET | EPOLLERR | EPOLLHUP;
+			pHandler->ModEpollEvent(this, nEvent);
 			OnLogString("[CSession::DoSend] send ret = %d, len = %d EAGAIN.", ret, len);
 		}
 
