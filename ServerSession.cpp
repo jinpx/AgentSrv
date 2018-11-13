@@ -91,7 +91,7 @@ VOID CServerSession::OnAccept( DWORD dwNetworkIndex )
 // ¶Ï¿ªÁ¬½Ó
 VOID CServerSession::OnDisconnect()
 {
-	ServerSessionManager::Instance()->RemoveServer( GetSessionIndex() );
+	// ServerSessionManager::Instance()->RemoveServer( GetSessionIndex() );
 	m_bConnection = FALSE;
 }
 

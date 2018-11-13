@@ -65,7 +65,7 @@ public:
 	virtual VOID OnLogString( char *pszLog );
 	// 服务类型
 	virtual eSERVER_TYPE GetServerType() { 
-		return AGENT_SERVER;	
+		return UNKNOWN_SERVER;
 	}
 	// 会话标识
 	DWORD GetSessionIndex() { 
