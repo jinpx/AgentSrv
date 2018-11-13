@@ -1,6 +1,6 @@
 #include "Utility.h"
+#include "ThreadLock.h"
 #include <string.h>
-#include "CircuitLock.h"
 
 /////////////////////////////////////////////////////////////////////////////////
 /* Linux mutex implementation */
@@ -9,7 +9,7 @@ static pthread_mutexattr_t attr;
 
 /////////////////////////////////////////////////////////////////////////////////
 // 构造函数
-CCircuitLock::CCircuitLock()
+CThreadLock::CThreadLock()
 {
 	if(!attr_initalized)
 	{
@@ -23,7 +23,7 @@ CCircuitLock::CCircuitLock()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 析构函数
-CCircuitLock::~CCircuitLock() 
+CThreadLock::~CThreadLock() 
 { 
 	pthread_mutex_destroy(&mutex_); 
 }

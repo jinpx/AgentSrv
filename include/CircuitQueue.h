@@ -9,11 +9,11 @@
 // 循环队列
 
 template<typename T>
-class CircuitQueue
+class CCircuitQueue
 {
 	//变量与参数
 protected:
-	CCircuitLock		m_cs;				
+	CThreadLock			m_cs;				
 	T					*m_pData;									// 循环锁
 	int					m_nLength;									// 数据长度
 	int					m_nSize;									// 数据大小
@@ -24,7 +24,7 @@ protected:
 	// 基本函数
 public:
 	// 构造函数
-	CircuitQueue()
+	CCircuitQueue()
 		: m_pData(NULL)
 		, m_nLength(0)
 		, m_nSize(0)
@@ -33,7 +33,7 @@ public:
 	{ }
 
 	// 析构函数
-	virtual ~CircuitQueue() {
+	virtual ~CCircuitQueue() {
 		if (m_pData) {
 			delete[] m_pData;
 		}

@@ -3,10 +3,10 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 #pragma once
-class NetworkObject;
-class IoHandler;
-class SendBuffer;
-class RecvBuffer;
+class CNetworkObject;
+class CServerHandler;
+class CSendBuffer;
+class CRecvBuffer;
 
 /////////////////////////////////////////////////////////////////////////////////
 // 会话类型
@@ -18,9 +18,9 @@ class Session
 	
 	// 参数变量
 public:
-	NetworkObject			*m_pNetworkObject;				// 网络对象
-	SendBuffer				*m_pSendBuffer;					// 发送缓存	
-	RecvBuffer				*m_pRecvBuffer;					// 接收缓存
+	CNetworkObject			*m_pNetworkObject;				// 网络对象
+	CSendBuffer				*m_pSendBuffer;					// 发送缓存	
+	CRecvBuffer				*m_pRecvBuffer;					// 接收缓存
 	SOCKET					m_socket;						// 网络句柄
 	SOCKADDR_IN				m_sockaddr;						// 网络地址
 	DWORD					m_dwLastSyncTick;				// 导步时间
@@ -32,8 +32,8 @@ public:
 	int						m_iCategory;					// 协议类型
 	int						m_iProtocol;					// 协议参数
 	int						m_iSize;						// 字节大小
-	CCircuitLock			m_lockRecv;						// 接收锁
-	CCircuitLock			m_lockSend;						// 发送锁
+	CThreadLock				m_lockRecv;						// 接收锁
+	CThreadLock				m_lockSend;						// 发送锁
 	BOOL					m_bCanSend;						// 可否发送
 	UINT64					m_dwTotalRecvBytes;				// 总共接收到的数据字节数
 	UINT64					m_dwTotalSendBytes;				// 总共接收到的数据字节数
@@ -53,9 +53,9 @@ public:
 	// 开始发送
 	BOOL					OnSend();
 	// 准备发送
-	BOOL 					PreSend(IoHandler* pIoHandler);
+	BOOL 					PreSend(CServerHandler* pIoHandler);
 	// 发送数据
-	BOOL					DoSend(IoHandler* pIoHandler);
+	BOOL					DoSend(CServerHandler* pIoHandler);
 	// 接收数据
 	BOOL					DoRecv();
 	// 创建网络句柄
@@ -63,7 +63,7 @@ public:
 	// 接收数数据包
 	BOOL					ProcessRecvdPacket( DWORD dwMaxPacketSize );
 	// 绑定句柄
-	void					BindNetworkObject( NetworkObject *pNetworkObject );
+	void					BindNetworkObject( CNetworkObject *pNetworkObject );
 	// 解绑句柄
 	void					UnbindNetworkObject();
 	// 设置为监听
@@ -84,15 +84,15 @@ public:
 		m_socket = INVALID_SOCKET; 
 	}
 	// 网络接口
-	inline NetworkObject* GetNetworkObject() { 
+	inline CNetworkObject* GetNetworkObject() { 
 		return m_pNetworkObject; 
 	}
 	// 发送缓存
-	inline SendBuffer*	GetSendBuffer() { 
+	inline CSendBuffer*	GetSendBuffer() { 
 		return m_pSendBuffer; 
 	}
 	// 接收缓存
-	inline RecvBuffer*	GetRecvBuffer() { 
+	inline CRecvBuffer*	GetRecvBuffer() { 
 		return m_pRecvBuffer;
 	} 
 	// 网络句柄

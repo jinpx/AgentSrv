@@ -5,12 +5,12 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 //发送缓存
-class SendBuffer
+class CSendBuffer
 {
 	//变量数据
 private:
 	BOOL						m_bComplete;						// 参数队列
-	CircuitQueue<BYTE>			*m_pQueue;							// 参数队列
+	CCircuitQueue<BYTE>			*m_pQueue;							// 参数队列
 
 public:
 	// 构造函数

@@ -1,5 +1,5 @@
-#ifndef _CircuitLock_Headfile_
-#define _CircuitLock_Headfile_
+#ifndef _TreadLock_Headfile_
+#define _TreadLock_Headfile_
 
 /////////////////////////////////////////////////////////////////////////////////
 #pragma once
@@ -9,10 +9,10 @@
 /////////////////////////////////////////////////////////////////////////////////
 // 循环锁存器
 
-class  CCircuitLock
+class  CThreadLock
 {
 	// 约束
-	friend class CCircuitCond;
+	friend class CThreadCond;
 	
 	// 变量
 protected:
@@ -22,9 +22,9 @@ protected:
 
 public:
 	// 构造函数
-	CCircuitLock();
+	CThreadLock();
 	// 析构函数
-	virtual ~CCircuitLock();
+	virtual ~CThreadLock();
 
 	/////////////////////////////////////////////////////////////////////////////////
 	// Acquires this mutex. If it cannot be acquired immediately, it will block.
@@ -49,7 +49,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////////
 // 条件约束
 
-class CCircuitCond
+class CThreadCond
 {
 	// 参数变量
 private:
@@ -58,11 +58,11 @@ private:
 
 public:
 	// 构造函数
-	inline CCircuitCond() {
+	inline CThreadCond() {
 		pthread_cond_init(&cond_, NULL);
 	}
 	// 析构函数
-	inline ~CCircuitCond() {
+	inline ~CThreadCond() {
 		pthread_cond_destroy(&cond_);
 	}
 	// 发送信息
@@ -74,11 +74,11 @@ public:
 		pthread_cond_broadcast(&cond_);
 	}
 	// 等待解锁
-	inline void Wait(CCircuitLock* lock) {
+	inline void Wait(CThreadLock* lock) {
 		pthread_cond_wait(&cond_, &lock->mutex_);
 	}
 	// 等待时间
-	inline bool Wait(CCircuitLock* lock, int seconds)
+	inline bool Wait(CThreadLock* lock, int seconds)
 	{
 		timespec tv;
 		tv.tv_nsec = 0;
@@ -97,24 +97,24 @@ public:
 // 锁存守护
 
 // 锁存守护
-class  CCircuitGuard
+class  CThreadGuard
 {
 	// 参数变量
 protected:
 	// 约束变量
-	CCircuitLock& lock_;
+	CThreadLock& lock_;
 
 	// 基本函数
 public:
 	// 构造函数
-	CCircuitGuard(CCircuitLock& lock) : lock_(lock) {
+	CThreadGuard(CThreadLock& lock) : lock_(lock) {
 		lock_.Lock();
 	}
 	// 析构函数
-	~CCircuitGuard() {
+	~CThreadGuard() {
 		lock_.Unlock();
 	}
 };
 
 /////////////////////////////////////////////////////////////////////////////////
-#endif // _CircuitLock_Headfile_
+#endif // _ThreadLock_Headfile_

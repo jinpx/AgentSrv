@@ -5,11 +5,11 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 //接收缓存
-class RecvBuffer
+class CRecvBuffer
 {
 	//变量数据
 private:
-	CircuitQueue<BYTE>				*m_pQueue;						// 参数队列
+	CCircuitQueue<BYTE>				*m_pQueue;						// 参数队列
 
 public:
 	// 构造函数

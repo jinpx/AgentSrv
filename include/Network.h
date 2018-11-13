@@ -10,21 +10,21 @@ typedef struct tagPACKET_HEADER
 	WORD		size;			// 数据包大小
 } PACKET_HEADER;
 
-class Session;
-class IoHandler;
+class CSession;
+class CServerHandler;
 /////////////////////////////////////////////////////////////////////////////////
 // 网络对象
 
-class NetworkObject
+class CNetworkObject
 {
 	// 会话参数
-	friend class Session;
+	friend class CSession;
 	// 控制句柄
-	friend class IoHandler;
+	friend class CServerHandler;
 	
 	// 参数变量
 private:
-	Session *					m_pSession;			// 会话参数
+	CSession *					m_pSession;			// 会话参数
 
 public:
 	// 构造函数
@@ -38,7 +38,7 @@ public:
 	// 发送数据
 	BOOL SendEx( DWORD dwNumberOfMessages, BYTE **ppMsg, WORD *pwSize );
 	// 绑定参数
-	void Redirect( NetworkObject *pNetworkObject );
+	void Redirect( CNetworkObject *pNetworkObject );
 	// 获取地址
 	SOCKADDR_IN* GetSockAddr();
 	// 获取地址
