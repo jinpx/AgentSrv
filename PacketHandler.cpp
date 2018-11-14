@@ -4,10 +4,10 @@
 #include "UserSession.h"
 
 /////////////////////////////////////////////////////////////////////////////////
-PacketHandler g_PacketHander;
+CPacketHandler g_PacketHander;
 
 /////////////////////////////////////////////////////////////////////////////////
-PacketHandler::PacketHandler(void)
+CPacketHandler::CPacketHandler(void)
 {
 	m_pFuncMap_CA = new FunctionMap;
 	m_pFuncMap_AL = new FunctionMap;
@@ -16,7 +16,7 @@ PacketHandler::PacketHandler(void)
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-PacketHandler::~PacketHandler(void)
+CPacketHandler::~CPacketHandler(void)
 {
 	SAFE_DELETE(m_pFuncMap_CA);
 	SAFE_DELETE(m_pFuncMap_AL);
@@ -25,7 +25,7 @@ PacketHandler::~PacketHandler(void)
 
 /////////////////////////////////////////////////////////////////////////////////
 //注册所有消息
-BOOL PacketHandler::RegisterHandler()
+BOOL CPacketHandler::RegisterHandler()
 {
 	Register_CA();
 	Register_AD();
@@ -35,31 +35,31 @@ BOOL PacketHandler::RegisterHandler()
 
 /////////////////////////////////////////////////////////////////////////////////
 //需要转发到GameServer的消息
-void PacketHandler::AddSendGameSrvMsg(WORD category, WORD protocol)
+void CPacketHandler::AddSendGameSrvMsg(WORD category, WORD protocol)
 {
 	m_mapSendGameSrvMsg[MAKELONG(category, protocol)] = 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-void PacketHandler::Register_CA()
+void CPacketHandler::Register_CA()
 {
 	AddHandler_CA(CG_SYNC, CG_SYNC_PLAYER_ENTER_SYN,  Handler_FromClient::OnCG_SYNC_PLAYER_ENTER_SYN);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-void PacketHandler::Register_AL()
+void CPacketHandler::Register_AL()
 {
 	AddHandler_AD(AD_CHARINFO, AD_CHARINFO_CHARLISTREQ_ACK, Hander_FromDBSrv::OnAD_CHARINFO_CHARLISTREQ_ACK);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-void PacketHandler::Register_AG()
+void CPacketHandler::Register_AG()
 {
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////
-BOOL PacketHandler::AddHandler_CA( WORD category, WORD protocol, fnHandler_c fnHandler)
+BOOL CPacketHandler::AddHandler_CA( WORD category, WORD protocol, fnHandler_c fnHandler)
 {
 	FUNC_CA * pFuncInfo	= new FUNC_CA;
 	pFuncInfo->m_dwFunctionKey	= MAKELONG( category, protocol );
@@ -69,7 +69,7 @@ BOOL PacketHandler::AddHandler_CA( WORD category, WORD protocol, fnHandler_c fnH
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-BOOL PacketHandler::AddHandler_AL( WORD category, WORD protocol, fnHandler fnHandler)
+BOOL CPacketHandler::AddHandler_AL( WORD category, WORD protocol, fnHandler fnHandler)
 {
 	FUNC_AL * pFuncInfo	= new FUNC_AL;
 	pFuncInfo->m_dwFunctionKey	= MAKELONG( category, protocol );
@@ -79,7 +79,7 @@ BOOL PacketHandler::AddHandler_AL( WORD category, WORD protocol, fnHandler fnHan
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-BOOL PacketHandler::AddHandler_AG( WORD category, WORD protocol, fnHandler fnHandler)
+BOOL CPacketHandler::AddHandler_AG( WORD category, WORD protocol, fnHandler fnHandler)
 {
 	FUNC_AG * pFuncInfo	= new FUNC_AG;
 	pFuncInfo->m_dwFunctionKey	= MAKELONG( category, protocol );
@@ -90,7 +90,7 @@ BOOL PacketHandler::AddHandler_AG( WORD category, WORD protocol, fnHandler fnHan
 
 /////////////////////////////////////////////////////////////////////////////////
 //解析消息
-VOID PacketHandler::ParsePacket_CA( UserSession * pSession, MSG_BASE * pMsg, WORD wSize )
+VOID CPacketHandler::ParsePacket_CA( UserSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
 	ASSERT(NULL != pMsg);
 	
@@ -125,7 +125,7 @@ VOID PacketHandler::ParsePacket_CA( UserSession * pSession, MSG_BASE * pMsg, WOR
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-VOID PacketHandler::ParsePacket_AL( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
+VOID CPacketHandler::ParsePacket_AL( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
 	FUNC_AL * pFuncInfo = (FUNC_AL *)m_pFuncMap_AD->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
 	if(pFuncInfo == NULL) {
@@ -135,7 +135,7 @@ VOID PacketHandler::ParsePacket_AL( ServerSession * pSession, MSG_BASE * pMsg, W
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-VOID PacketHandler::ParsePacket_AG( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
+VOID CPacketHandler::ParsePacket_AG( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
 	FUNC_AG * pFuncInfo = (FUNC_AG *)m_pFuncMap_AM->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
 	if(pFuncInfo == NULL) {
