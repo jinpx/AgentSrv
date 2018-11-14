@@ -6,7 +6,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 // 游戏服务器
-class CLogonSession:public ServerSession
+class CLogonSession : public CServerSession
 {
 public:
 	// 构造函数

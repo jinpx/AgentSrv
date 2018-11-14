@@ -7,18 +7,18 @@
 #include <map>
 
 /////////////////////////////////////////////////////////////////////////////////
-class ServerSession;
-class UserSession;
+class CServerSession;
+class CUserSession;
 
 /////////////////////////////////////////////////////////////////////////////////
 // 句柄函数
-typedef VOID (*fnHandler)( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize );
-typedef VOID (*fnHandler_c)( UserSession * pSession, MSG_BASE * pMsg, WORD wSize );
+typedef VOID (*fnHandler)( CServerSession * pSession, MSG_BASE * pMsg, WORD wSize );
+typedef VOID (*fnHandler_c)( CUserSession * pSession, MSG_BASE * pMsg, WORD wSize );
 
 
 /////////////////////////////////////////////////////////////////////////////////
 // 数据包控制
-class CPacketHandler: public Singleton<PacketHandler>
+class CPacketHandler: public Singleton<CPacketHandler>
 {
 public:
 	// 构造函数

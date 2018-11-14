@@ -1,5 +1,5 @@
-#ifndef _GameServerSession_Headfile_
-#define _GameServerSession_Headfile_
+#ifndef _GameSession_Headfile_
+#define _GameSession_Headfile_
 
 /////////////////////////////////////////////////////////////////////////////////
 #include "ServerSession.h"
@@ -7,7 +7,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 // 游戏服务器
 
-class CGameSession : public ServerSession
+class CGameSession : public CServerSession
 {
 public:
 	// 构造函数
