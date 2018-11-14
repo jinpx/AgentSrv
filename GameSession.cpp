@@ -31,7 +31,7 @@ VOID CGameSession::OnRecv( BYTE *pMsg, WORD wSize )
 // ¶Ï¿ªÁ¬½Ó
 VOID CGameSession::OnDisconnect()
 {
-	ServerSession::OnDisconnect();
+	CServerSession::OnDisconnect();
 }
 
 /////////////////////////////////////////////////////////////////////////////////

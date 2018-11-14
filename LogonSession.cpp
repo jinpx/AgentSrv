@@ -31,7 +31,7 @@ VOID CLogonSession::OnRecv( BYTE *pMsg, WORD wSize )
 // ¶Ï¿ªÁ¬½Ó
 VOID CLogonSession::OnDisconnect()
 {
-	ServerSession::OnDisconnect();
+	CServerSession::OnDisconnect();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
