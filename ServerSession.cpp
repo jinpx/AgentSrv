@@ -1,5 +1,5 @@
 #include "Utility.h"
-#include "PacketStruct.h"
+#include "Singleton.h"
 #include "ServerSession.h"
 
 /////////////////////////////////////////////////////////////////////////////////
