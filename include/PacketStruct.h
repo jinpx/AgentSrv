@@ -38,7 +38,9 @@ struct MSG_BASE
 // –ƒÃ¯¿‡–Õ
 struct MSG_HEARTBEAT : public MSG_BASE
 {
-
+	MSG_HEARTBEAT() {
+		memset(this, 0, sizeof(MSG_BASE));
+	}
 };
 
 /////////////////////////////////////////////////////////////////////////////////

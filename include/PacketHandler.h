@@ -1,5 +1,5 @@
-#ifndef _LogonServerSession_Headfile_
-#define _LogonServerSession_Headfile_
+#ifndef _PacketHandler_Headfile_
+#define _PacketHandler_Headfile_
 
 /////////////////////////////////////////////////////////////////////////////////
 #include <PacketStruct.h>
