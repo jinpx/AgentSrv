@@ -48,11 +48,11 @@ public:
 	BOOL AddHandler_AG( WORD category, WORD protocol, fnHandler fnHandler);
 
 	//解析消息
-	VOID ParsePacket_CA( UserSession  * pSession, MSG_BASE * pMsg, WORD wSize );
+	VOID ParsePacket_CA( CUserSession  * pSession, MSG_BASE * pMsg, WORD wSize );
 	//解析消息
-	VOID ParsePacket_AL( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize );
+	VOID ParsePacket_AL( CServerSession * pSession, MSG_BASE * pMsg, WORD wSize );
 	//解析消息
-	VOID ParsePacket_AG( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize );
+	VOID ParsePacket_AG( CServerSession * pSession, MSG_BASE * pMsg, WORD wSize );
 
 private:
 
@@ -73,13 +73,13 @@ private:
 
 private:
 	//客户端<-->网关服务器的消息
-	FunctionMap	*	m_pFuncMap_CA;
+	CFunctionMap	* m_pFuncMap_CA;
 
 	//网关服务器<-->数据库服务器的消息
-	FunctionMap	*	m_pFuncMap_AL;
+	CFunctionMap	* m_pFuncMap_AL;
 
 	//网关服务器<-->监控服务器的消息
-	FunctionMap	*	m_pFuncMap_AG;
+	CFunctionMap	* m_pFuncMap_AG;
 
 	//需要转发到游戏服务器的消息
 	std::map<DWORD, BYTE>	m_mapSendGameSrvMsg;
