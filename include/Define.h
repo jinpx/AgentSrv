@@ -56,4 +56,18 @@ typedef struct				sockaddr SOCKADDR;
 DWORD  GetTickCount();		// ¼ÆÊ±Æ÷
 
 /////////////////////////////////////////////////////////////////////////////////
+#define SAFE_DELETE( p)				{ if ( p) { delete ( p); ( p) = NULL; } }
+#define SAFE_DELETE_ARRAY( p)		{ if ( p) { delete[] ( p); ( p) = NULL; } }
+#define SAFE_RELEASE( p)			{ if ( p) { ( p)->Release(); ( p) = NULL; } }
+#define	SAFE_RELEASENDELETE(p)		if (p) { (p)->Release(); delete (p); (p) = NULL; }
+
+/////////////////////////////////////////////////////////////////////////////////
+#define MAX_TIMEDATA_SIZE			( 20 )
+
+/////////////////////////////////////////////////////////////////////////////////
+const int MAX_ID_LEN				= 24;
+const int MAX_PD_LEN				= 24;
+const int MAX_IP_LEN				= 32;
+
+/////////////////////////////////////////////////////////////////////////////////
 #endif
