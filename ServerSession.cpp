@@ -1,4 +1,5 @@
 #include "Utility.h"
+#include "PacketStruct.h"
 #include "ServerSession.h"
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -99,11 +100,11 @@ VOID CServerSession::OnDisconnect()
 // ∑¢ÀÕ¿‡–Õ
 VOID CServerSession::SendServerType()
 {
-	MSG_SERVER_TYPE		msg;
+	/* MSG_SERVER_TYPE		msg;
 	msg.m_byCategory	= 0;
 	msg.m_byProtocol	= 0;
 	msg.m_byServerType	= GetServerType();
-	Send( (BYTE*)&msg, sizeof(MSG_SERVER_TYPE) );
+	Send( (BYTE*)&msg, sizeof(MSG_SERVER_TYPE) ); */
 }
 
 /////////////////////////////////////////////////////////////////////////////////
