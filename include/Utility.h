@@ -9,8 +9,6 @@
 #include <errno.h>	
 #include <iostream>
 #include <vector>
-#include <map>
-#include <list>
 #include <bitset>
 #include <deque>
 #include <assert.h>
@@ -27,11 +25,9 @@ using namespace __gnu_cxx;
 #include <sys/epoll.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <iostream>
 #include <vector>
-#include <map>
-#include <list>
-#include <string.h>	
+#include <string.h>
+#include <wchar.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 #include <unistd.h>	
