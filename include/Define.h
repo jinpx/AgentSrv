@@ -25,6 +25,7 @@ typedef double				DOUBLE;
 typedef int                 INT;
 typedef unsigned int        UINT;
 typedef char				CHAR;
+typedef wchar_t				TCHAR;
 typedef short				SHORT;
 typedef unsigned short		USHORT;
 typedef char				*LPSTR, *PSTR;
