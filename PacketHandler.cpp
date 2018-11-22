@@ -28,8 +28,8 @@ CPacketHandler::~CPacketHandler(void)
 BOOL CPacketHandler::RegisterHandler()
 {
 	Register_CA();
-	Register_AD();
-	Register_AM();
+	Register_AL();
+	Register_AG();
 	return TRUE;
 }	
 
@@ -43,13 +43,13 @@ void CPacketHandler::AddSendGameSrvMsg(WORD category, WORD protocol)
 /////////////////////////////////////////////////////////////////////////////////
 void CPacketHandler::Register_CA()
 {
-	AddHandler_CA(CG_SYNC, CG_SYNC_PLAYER_ENTER_SYN,  Handler_FromClient::OnCG_SYNC_PLAYER_ENTER_SYN);
+	//AddHandler_CA(CG_SYNC, CG_SYNC_PLAYER_ENTER_SYN,  Handler_FromClient::OnCG_SYNC_PLAYER_ENTER_SYN);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 void CPacketHandler::Register_AL()
 {
-	AddHandler_AD(AD_CHARINFO, AD_CHARINFO_CHARLISTREQ_ACK, Hander_FromDBSrv::OnAD_CHARINFO_CHARLISTREQ_ACK);
+	//AddHandler_AL(AD_CHARINFO, AD_CHARINFO_CHARLISTREQ_ACK, Hander_FromDBSrv::OnAD_CHARINFO_CHARLISTREQ_ACK);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ BOOL CPacketHandler::AddHandler_AG( WORD category, WORD protocol, fnHandler fnHa
 
 /////////////////////////////////////////////////////////////////////////////////
 //½âÎöÏûÏ¢
-VOID CPacketHandler::ParsePacket_CA( UserSession * pSession, MSG_BASE * pMsg, WORD wSize )
+VOID CPacketHandler::ParsePacket_CA( CUserSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
 	ASSERT(NULL != pMsg);
 	
@@ -107,7 +107,7 @@ VOID CPacketHandler::ParsePacket_CA( UserSession * pSession, MSG_BASE * pMsg, WO
 			rMsg->dwUserGUID = pUser->GetUserGUID();
 		}
 
-		g_pAgentServer->SendToWorldServer( (BYTE*)pMsg, wSize );
+		//g_pAgentServer->SendToWorldServer( (BYTE*)pMsg, wSize );
 		return;
 	}
 
@@ -118,16 +118,16 @@ VOID CPacketHandler::ParsePacket_CA( UserSession * pSession, MSG_BASE * pMsg, WO
 		{
 			((MSG_BASE_FORWARD *)pMsg)->m_dwParameter = pSession->GetUserGUID();
 			((MSG_BASE_FORWARD *)pMsg)->m_byParameter = pSession->GetSelectedCharIndex();
-			g_pAgentServer->SendToFarmServer((BYTE*)pMsg, wSize);
+			//g_pAgentServer->SendToFarmServer((BYTE*)pMsg, wSize);
 		}
 		return;
 	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-VOID CPacketHandler::ParsePacket_AL( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
+VOID CPacketHandler::ParsePacket_AL( CServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
-	FUNC_AL * pFuncInfo = (FUNC_AL *)m_pFuncMap_AD->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
+	FUNC_AL * pFuncInfo = (FUNC_AL *)m_pFuncMap_AL->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
 	if(pFuncInfo == NULL) {
 		return;
 	}
@@ -135,9 +135,9 @@ VOID CPacketHandler::ParsePacket_AL( ServerSession * pSession, MSG_BASE * pMsg, 
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-VOID CPacketHandler::ParsePacket_AG( ServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
+VOID CPacketHandler::ParsePacket_AG( CServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
-	FUNC_AG * pFuncInfo = (FUNC_AG *)m_pFuncMap_AM->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
+	FUNC_AG * pFuncInfo = (FUNC_AG *)m_pFuncMap_AG->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
 	if(pFuncInfo == NULL) {
 		return;
 	}
