@@ -1,6 +1,7 @@
 #ifndef _UserSession_Headfile_
 #define _UserSession_Headfile_
 
+#include <Utility.h>
 /////////////////////////////////////////////////////////////////////////////////
 enum eUSER_TYPE { UT_TEMP_USER, UT_USER, };
 
@@ -11,12 +12,12 @@ class CUserSession : public CServerSession
 {
 	// 参数变量
 protected:
-	eUSER_TYPE				m_eUserType;						// 用户类型
-	DWORD					m_dwUserId;							// 用户标识
-	TCHAR					m_pszID[MAX_ID_LEN+1];				// 帐户类型
-	DWORD					m_dwUserKey;						// 用户键值
-	TCHAR					m_pszLoginTime[MAX_TIMEDATA_SIZE];	// 登录时间
-	ServerSession *			m_pGameServer;
+	eUSER_TYPE				m_eUserType;							// 用户类型
+	DWORD					m_dwUserId;								// 用户标识
+	TCHAR					m_pszID[MAX_ID_LEN+1];					// 帐户类型
+	DWORD					m_dwUserKey;							// 用户键值
+	TCHAR					m_pszLoginTime[MAX_TIMEDATA_SIZE];		// 登录时间
+	CServerSession *		m_pGameServer;
 
 	// 基本函数
 public:
