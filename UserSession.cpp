@@ -19,7 +19,7 @@ VOID CUserSession::Init()
 	UnGameServer();
 	m_dwUserId		= 0;
 	m_dwUserKey		= 0;
-	wcscpy( m_pszID, L("") );
+	wcscpy( m_pszID, L"" );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
