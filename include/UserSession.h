@@ -2,6 +2,7 @@
 #define _UserSession_Headfile_
 
 #include <Utility.h>
+#include <PacketStruct.h>
 #include <ServerSession.h>
 /////////////////////////////////////////////////////////////////////////////////
 enum eUSER_TYPE { UT_TEMP_USER, UT_USER, };
