@@ -55,11 +55,11 @@ public:
 	}
 	// 设置IP数据
 	VOID SetClientIP( const TCHAR * ps ) {
-		wcscpy(m_pszClientIP, ps);
+		wcscpy_s( m_pszClientIP, MAX_IP_LEN, ps);
 	}
 	// 登录时间
 	VOID SetLoginTime( const TCHAR * ps ) { 
-		wcscpy( m_pszLoginTime, ps, MAX_TIMEDATA_SIZE ); 
+		wcscpy_s( m_pszLoginTime, MAX_TIMEDATA_SIZE, ps ); 
 		m_pszID[MAX_ID_LEN-1]=0; 
 	}
 	// 获取时间
