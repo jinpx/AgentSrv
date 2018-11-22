@@ -26,6 +26,7 @@ using namespace __gnu_cxx;
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <vector>
+#include <cstring.h>
 #include <string.h>
 #include <wchar.h>
 
