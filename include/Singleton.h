@@ -9,7 +9,7 @@
 // 唯一实例
 
 template <typename T>
-class Singleton
+class CSingleton
 {
 	// 参数变量
 private:
@@ -18,7 +18,7 @@ private:
 
 public:
 	// 析构函数
-	~Singleton()
+	~CSingleton()
 	{ }
 	// 唯一实例
 	static T * Instance()
@@ -39,7 +39,7 @@ public:
 };
 
 /////////////////////////////////////////////////////////////////////////////////
-template< class T > T * Singleton<T>::ms_pInstance = 0;
+template< class T > T * CSingleton<T>::ms_pInstance = 0;
 
 /////////////////////////////////////////////////////////////////////////////////
 #endif // __SINGLETON_H__

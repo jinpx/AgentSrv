@@ -19,7 +19,8 @@ typedef VOID (*fnHandler_c)( CUserSession * pSession, MSG_BASE * pMsg, WORD wSiz
 
 /////////////////////////////////////////////////////////////////////////////////
 // 数据包控制
-class CPacketHandler: public Singleton<CPacketHandler>
+
+class CPacketHandler: public CSingleton<CPacketHandler>
 {
 public:
 	// 构造函数

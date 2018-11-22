@@ -16,9 +16,9 @@ using namespace std;
 /////////////////////////////////////////////////////////////////////////////////
 class CSession;														// 会话活动
 class CNetworkObject;												// 网络对象
-class CUserServer;													// 用户连接
-class CGameServer;													// 游戏服务
-class CLogonServer;													// 登录服务
+class CUserSession;													// 用户连接
+class CGameSession;													// 游戏服务
+class CLogonSession;												// 登录服务
 
 /////////////////////////////////////////////////////////////////////////////////
 // IO句柄
@@ -29,9 +29,9 @@ class CServerHandler
 public:
 	
 	// 服务器
-	CUserServer			*m_pUserServer;								// 用户会话
-	CGameServer			*m_pGameServer;								// 游戏会话
-	CLogonServer		*m_pLogonServer;							// 登录会话
+	CUserSession		*m_pUserSession;							// 用户会话
+	CLogonSession		*m_pLogonSession;							// 登录会话
+	CGameSession		*m_pGameSession;							// 游戏会话
 	BOOL				m_bShutdown;
 
 	// 事件控制
