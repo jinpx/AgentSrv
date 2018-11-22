@@ -14,7 +14,7 @@ CUserSession::~CUserSession()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 初始化
-VOID CUserSession::init()
+VOID CUserSession::Init()
 {
 	UnGameServer();
 	m_dwUserId		= 0;
@@ -24,7 +24,7 @@ VOID CUserSession::init()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 释放参数
-VOID CUserSession::release()
+VOID CUserSession::Release()
 {
 }
 
