@@ -92,18 +92,21 @@ BOOL CPacketHandler::AddHandler_AG( WORD category, WORD protocol, fnHandler fnHa
 //解析消息
 VOID CPacketHandler::ParsePacket_CA( CUserSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
-	ASSERT(NULL != pMsg);
+	// ASSERT(NULL != pMsg);
 	
 	//如果是聊天服务器消息就转发
 	if ( pMsg->m_byCategory==CW_SYNC )
 	{ 
 		if (pMsg->m_byProtocol==CW_SYNC_FRIENDS_INFO_REQ )
 		{
-			MSG_CW_FRIENDS_INFO_SYNC* rMsg = NULL;
+			MSG_CW_FRIENDS_INFO_SYNC * rMsg = NULL;
 			rMsg = (MSG_CW_FRIENDS_INFO_SYNC*)pMsg;
 			
-			User *pUser = (User *)pSession;
-			if ( pUser==NULL ) return;
+			CUserSession *pUser = (CUserSession *)pSession;
+			if ( pUser==NULL ) {
+				return;
+			}
+			
 			rMsg->dwUserGUID = pUser->GetUserGUID();
 		}
 
