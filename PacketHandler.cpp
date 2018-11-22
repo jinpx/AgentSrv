@@ -9,9 +9,9 @@ CPacketHandler g_PacketHander;
 /////////////////////////////////////////////////////////////////////////////////
 CPacketHandler::CPacketHandler(void)
 {
-	m_pFuncMap_CA = new FunctionMap;
-	m_pFuncMap_AL = new FunctionMap;
-	m_pFuncMap_AG = new FunctionMap;
+	m_pFuncMap_CA = new CFunctionMap;
+	m_pFuncMap_AL = new CFunctionMap;
+	m_pFuncMap_AG = new CFunctionMap;
 	RegisterHandler();
 }
 
