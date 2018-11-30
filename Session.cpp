@@ -41,6 +41,23 @@ CSession::~CSession()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 发送数据
+void Session::Init()
+{
+	m_pSendBuffer->Clear();
+	m_pRecvBuffer->Clear();
+
+	ResetKillFlag();
+
+	m_bDisconnectOrdered = FALSE;
+	m_bCanSend			 = TRUE;
+	
+	m_dwTotalRecvBytes	= 0;
+	m_dwTotalSendBytes	= 0;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////
+// 发送数据
 BOOL CSession::Send( BYTE *pMsg, WORD wSize )
 {
 	PACKET_HEADER header;
