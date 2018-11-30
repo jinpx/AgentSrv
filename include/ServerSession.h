@@ -59,7 +59,7 @@ public:
 	// 设置连接
 	virtual VOID OnConnect( BOOL bSuccess, DWORD dwNetworkIndex );
 	// 接收数据
-	virtual VOID OnRecv( BYTE *pMsg, WORD wSize );
+	virtual VOID OnRecv( BYTE *pMsg, WORD wSize ) {	};
 	// 打印日志
 	virtual VOID OnLogString( char *pszLog );
 	// 服务类型
