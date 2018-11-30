@@ -82,7 +82,7 @@ public:
 		m_sockaddr = sockaddr; }
 	// 关闭地址
 	inline void	CloseSocket() { 
-		SocketOpt::CloseSocket( m_socket ); 
+		CSocketOpt::CloseSocket( m_socket ); 
 		m_socket = INVALID_SOCKET; 
 	}
 	// 网络接口
