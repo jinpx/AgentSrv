@@ -22,7 +22,7 @@ CServerInfo::~CServerInfo(void)
 //≥ı ºªØ
 BOOL CServerInfo::Init(char *strFileName)
 {
-	pIniFile = new IniFile(strFileName);
+	pIniFile = new CIniFile(strFileName);
 	if (!pIniFile) {
 		return FALSE;
 	}
@@ -87,3 +87,4 @@ SERVERINFO_EX CServerInfo::GetServerInfo(eSERVER_TYPE type)
 	assert(0 != sInfo.m_dwPort);
 	assert(0 != strlen(sInfo.m_strIp));
 	return sInfo;
+}
