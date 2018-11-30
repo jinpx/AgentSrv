@@ -74,9 +74,14 @@ VOID CServerSession::OnConnect( BOOL bSuccess, DWORD dwNetworkIndex )
 	{
 		SetForConnect( TRUE );
 		SetSessionIndex( dwNetworkIndex );
-		// ServerSessionManager::Instance()->AddServer( this );
 		m_bConnection = TRUE;
 	}
+}
+
+// ·¢ËÍÊý¾Ý
+BOOL CServerSession::SendPacket( MSG_BASE * pMsg, WORD wSize )
+{
+	return Send((BYTE*)pMsg, wSize);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +90,6 @@ VOID CServerSession::OnAccept( DWORD dwNetworkIndex )
 {
 	SetForConnect( FALSE );
 	SetSessionIndex( dwNetworkIndex );
-	// ServerSessionManager::Instance()->AddServer( this );
 	m_bConnection = TRUE;
 }
 

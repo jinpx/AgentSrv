@@ -58,6 +58,8 @@ public:
 	virtual VOID OnDisconnect();
 	// 设置连接
 	virtual VOID OnConnect( BOOL bSuccess, DWORD dwNetworkIndex );
+	// 发送数据
+	virtual BOOL SendPacket( MSG_BASE * pMsg, WORD wSize ); 
 	// 接收数据
 	virtual VOID OnRecv( BYTE *pMsg, WORD wSize ) {	};
 	// 打印日志
