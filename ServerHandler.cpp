@@ -1,4 +1,5 @@
-#include "ServerHandler.h"
+#include <Session.h>
+#include <ServerHandler.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 // eopll¼àÌýÏß³Ì
@@ -17,7 +18,7 @@ void* epoll_thread(void* param )
 
 	while( !pServerHandler->m_bShutdown )
 	{
-        int fd_count = epoll_wait(pIoHandler->m_epoll, events, SOCKET_HOLDER_SIZE, 5000);
+        int fd_count = epoll_wait(pServerHandler->m_epoll, events, SOCKET_HOLDER_SIZE, 5000);
         for ( int i = 0; i < fd_count; i ++ )
         {
         	CSession* pSession = (CSession*)events[i].data.ptr;
