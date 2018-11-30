@@ -4,7 +4,7 @@
 #include <Utility.h>
 /////////////////////////////////////////////////////////////////////////////////
 
-namespace SocketOpt
+namespace CSocketOpt
 {
 	// Create file descriptor for socket i/o operations.
 	SOCKET CreateTCPFileDescriptor();

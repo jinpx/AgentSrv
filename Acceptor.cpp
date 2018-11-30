@@ -1,11 +1,12 @@
 #include <Acceptor.h>
+#include <SocketOpt.h>
 #include <RecvBuffer.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 // ¼àÌýÏß³Ì
 void * accept_thread(void * param )
 {
-	Acceptor *pAcceptor = (Acceptor*)param;
+	CAcceptor *pAcceptor = (CAcceptor*)param;
 	while( !pAcceptor->m_bShutdown )
 	{
 		struct sockaddr_in addr;
@@ -14,8 +15,8 @@ void * accept_thread(void * param )
 		if( sock == -1)
 			continue; 
 
-		SocketOpt::Nonblocking( sock );
-		SocketOpt::DisableBuffering( sock );
+		CSocketOpt::Nonblocking( sock );
+		CSocketOpt::DisableBuffering( sock );
 	}
 
 	printf ("accept_thread 0x%x exit\n", pthread_self ()); 
