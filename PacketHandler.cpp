@@ -92,12 +92,10 @@ BOOL CPacketHandler::AddHandler_AG( WORD category, WORD protocol, fnHandler fnHa
 //解析消息
 VOID CPacketHandler::ParsePacket_CA( CUserSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
-	// ASSERT(NULL != pMsg);
-	
 	//如果是聊天服务器消息就转发
-	if ( pMsg->m_byCategory==CW_SYNC )
+	/* if ( pMsg->m_byCategory==CW_SYNC )
 	{ 
-		if (pMsg->m_byProtocol==CW_SYNC_FRIENDS_INFO_REQ )
+		if ( pMsg->m_byProtocol==CW_SYNC_FRIENDS_INFO_REQ )
 		{
 			MSG_CW_FRIENDS_INFO_SYNC * rMsg = NULL;
 			rMsg = (MSG_CW_FRIENDS_INFO_SYNC*)pMsg;
@@ -110,7 +108,7 @@ VOID CPacketHandler::ParsePacket_CA( CUserSession * pSession, MSG_BASE * pMsg, W
 			rMsg->dwUserGUID = pUser->GetUserGUID();
 		}
 
-		//g_pAgentServer->SendToWorldServer( (BYTE*)pMsg, wSize );
+		g_pAgentServer->SendToWorldServer( (BYTE*)pMsg, wSize );
 		return;
 	}
 
@@ -121,29 +119,29 @@ VOID CPacketHandler::ParsePacket_CA( CUserSession * pSession, MSG_BASE * pMsg, W
 		{
 			((MSG_BASE_FORWARD *)pMsg)->m_dwParameter = pSession->GetUserGUID();
 			((MSG_BASE_FORWARD *)pMsg)->m_byParameter = pSession->GetSelectedCharIndex();
-			//g_pAgentServer->SendToFarmServer((BYTE*)pMsg, wSize);
+			g_pAgentServer->SendToFarmServer((BYTE*)pMsg, wSize);
 		}
 		return;
-	}
+	} */ 
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 VOID CPacketHandler::ParsePacket_AL( CServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
-	FUNC_AL * pFuncInfo = (FUNC_AL *)m_pFuncMap_AL->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
+	/* FUNC_AL * pFuncInfo = (FUNC_AL *)m_pFuncMap_AL->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
 	if(pFuncInfo == NULL) {
 		return;
 	}
-	pFuncInfo->m_fnHandler( pSession, pMsg, wSize );
+	pFuncInfo->m_fnHandler( pSession, pMsg, wSize ); */
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 VOID CPacketHandler::ParsePacket_AG( CServerSession * pSession, MSG_BASE * pMsg, WORD wSize )
 {
-	FUNC_AG * pFuncInfo = (FUNC_AG *)m_pFuncMap_AG->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
+	/* FUNC_AG * pFuncInfo = (FUNC_AG *)m_pFuncMap_AG->Find( MAKELONG( pMsg->m_byCategory, pMsg->m_byProtocol ) );
 	if(pFuncInfo == NULL) {
 		return;
 	}
-	pFuncInfo->m_fnHandler( pSession, pMsg, wSize );
+	pFuncInfo->m_fnHandler( pSession, pMsg, wSize ); */
 }
 
