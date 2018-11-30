@@ -3,14 +3,15 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 #include <Utility.h>
-#include "IniFile.h"
+#include <IniFile.h>
+#include <ServerSession.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 // 服务器地址
 struct SERVERINFO_EX
 {
-	char        m_strIp[IP_MAX_LEN]; //IP
-	DWORD       m_dwPort;            //PORT
+	char        m_strIp[MAX_IP_LEN];									//IP
+	DWORD       m_dwPort;												//PORT
 
 	SERVERINFO_EX()
 	{
@@ -26,7 +27,7 @@ class CServerInfo
 {
 	// 参数变化
 private:
-	IniFile	*pIniFile;
+	CIniFile *pIniFile;
 
 	// 基础函数
 public:
