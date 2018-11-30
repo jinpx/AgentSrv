@@ -257,8 +257,8 @@ SOCKET CSession::CreateSocket()
 		return newSocket;
 	}
 
-	SocketOpt::Nonblocking( newSocket );
-	SocketOpt::DisableBuffering( newSocket );
+	CSocketOpt::Nonblocking( newSocket );
+	CSocketOpt::DisableBuffering( newSocket );
 	return newSocket;
 }
 
