@@ -71,7 +71,7 @@ BOOL CAcceptor::StartListen( char *pIP, WORD wPort )
 
 	int err = bind( m_listenSocket, (SOCKADDR *)&m_sockaddr, sizeof(m_sockaddr) );
 	if( err == SOCKET_ERROR ) {
-		SocketOpt::CloseSocket(m_listenSocket);
+		CSocketOpt::CloseSocket(m_listenSocket);
 		printf("\nbind fail %s:%d\n", pIP, wPort);
 		return FALSE;
 	}
