@@ -2,7 +2,8 @@
 #define _Session_Headfile_
 
 #pragma once
-#include "SocketOpt.h"
+#include <SocketOpt.h>
+#include <ThreadLock.h>
 /////////////////////////////////////////////////////////////////////////////////
 
 class CNetworkObject;
