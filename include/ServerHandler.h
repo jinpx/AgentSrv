@@ -41,6 +41,7 @@ public:
 	pthread_t			m_hIoThread[MAX_IO_WORKER_THREAD];			// IO 
 	pthread_t			m_hEpollThread;
 
+	CCircuitQueue<struct epoll_event> * m_pEvents;					// 串行事件
 	CThreadLock			m_lockEvents;								// 事务锁存
 	CThreadCond			m_condEvents;								// 事务约束
 
