@@ -41,7 +41,7 @@ CSession::~CSession()
 
 /////////////////////////////////////////////////////////////////////////////////
 // ·¢ËÍÊý¾Ý
-void Session::Init()
+void CSession::Init()
 {
 	m_pSendBuffer->Clear();
 	m_pRecvBuffer->Clear();
