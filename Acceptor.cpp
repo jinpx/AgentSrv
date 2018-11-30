@@ -60,7 +60,7 @@ BOOL CAcceptor::StartListen( char *pIP, WORD wPort )
 		return FALSE;
 	}
 
-	SocketOpt::ReuseAddr(m_listenSocket);
+	CSocketOpt::ReuseAddr(m_listenSocket);
 //	SocketOpt::Nonblocking(m_listenSocket);
 //	SocketOpt::SetTimeout(m_listenSocket, 30);
 
@@ -78,7 +78,7 @@ BOOL CAcceptor::StartListen( char *pIP, WORD wPort )
 
 	err = listen( m_listenSocket, 5);//SOMAXCONN );
 	if( err == SOCKET_ERROR ) {
-		SocketOpt::CloseSocket(m_listenSocket);
+		CSocketOpt::CloseSocket(m_listenSocket);
 		printf("\n[Acceptor::CreateListenSocket] socket listen fail!");
 		return FALSE;
 	}
@@ -93,7 +93,7 @@ void CAcceptor::Shutdown()
 {
 	if( m_listenSocket != INVALID_SOCKET )		
 	{
-		SocketOpt::CloseSocket( m_listenSocket );
+		CSocketOpt::CloseSocket( m_listenSocket );
 		m_bShutdown = 1;
 		pthread_cancel(m_hAcceptThread); 
 		pthread_join(m_hAcceptThread, NULL);   
