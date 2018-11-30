@@ -2,6 +2,7 @@
 #define _ACCEPTOR_H_
 
 #pragma once
+#include <Network.h>
 /////////////////////////////////////////////////////////////////////////////////
 class CSession;
 class CServerHandler;
@@ -11,6 +12,7 @@ typedef struct tagIOHANDLER_DESC IOHANDLER_DESC, *LPIOHANDLER_DESC;
 
 /////////////////////////////////////////////////////////////////////////////////
 // 接受器
+
 class CAcceptor
 {
 	// 接受线程

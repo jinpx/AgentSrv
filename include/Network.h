@@ -1,8 +1,8 @@
 #ifndef _Network_Headfile_
 #define _Network_Headfile_
 
+#include <Utility.h>
 #pragma pack(push,1)
-#include "Utility.h"
 /////////////////////////////////////////////////////////////////////////////////
 // °üÍ·
 
