@@ -1,4 +1,5 @@
-#include "RecvBuffer.h"
+#include <Acceptor.h>
+#include <RecvBuffer.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 // 监听线程
@@ -23,7 +24,7 @@ void * accept_thread(void * param )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 构造函数
-Acceptor::Acceptor()
+CAcceptor::CAcceptor()
 {
 	m_listenSocket	= INVALID_SOCKET;
 	m_hAcceptThread = 0;
@@ -32,7 +33,7 @@ Acceptor::Acceptor()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 析构函数
-Acceptor::~Acceptor()
+CAcceptor::~CAcceptor()
 {
 	Shutdown();
 
@@ -40,14 +41,14 @@ Acceptor::~Acceptor()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 初始化
-void Acceptor::Init( CServerHandler *pHandler )
+void CAcceptor::Init( CServerHandler *pHandler )
 {
 	m_pHandler = pHandler;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // 开始监听数据
-BOOL Acceptor::StartListen( char *pIP, WORD wPort )
+BOOL CAcceptor::StartListen( char *pIP, WORD wPort )
 {
 	if( m_listenSocket != INVALID_SOCKET ) {
 		return FALSE;
@@ -88,7 +89,7 @@ BOOL Acceptor::StartListen( char *pIP, WORD wPort )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 关闭数据
-void Acceptor::Shutdown()
+void CAcceptor::Shutdown()
 {
 	if( m_listenSocket != INVALID_SOCKET )		
 	{

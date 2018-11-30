@@ -11,7 +11,7 @@ typedef struct tagIOHANDLER_DESC IOHANDLER_DESC, *LPIOHANDLER_DESC;
 
 /////////////////////////////////////////////////////////////////////////////////
 // 接受器
-class Acceptor
+class CAcceptor
 {
 	// 接受线程
 	friend void * accept_thread(void* param );
@@ -26,9 +26,9 @@ private:
 
 public:
 	// 构造函数
-	Acceptor();
+	CAcceptor();
 	// 析构函数
-	~Acceptor();
+	~CAcceptor();
 	
 	// 初始化数据
 	void Init( CServerHandler *pHandler  );
