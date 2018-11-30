@@ -41,6 +41,9 @@ public:
 	pthread_t			m_hIoThread[MAX_IO_WORKER_THREAD];			// IO 
 	pthread_t			m_hEpollThread;
 
+	CThreadLock			m_lockEvents;								// 事务锁存
+	CThreadCond			m_condEvents;								// 事务约束
+
 public:
 	// 构造函数
 	CServerHandler();
