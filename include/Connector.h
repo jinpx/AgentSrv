@@ -34,8 +34,8 @@ public:
 	
 	// 初始化数据
 	void Init( CServerHandler *pHandler  );
-	// 开始监听
-	BOOL Connect( CSession * m_Session );
+	// 开始连接
+	void Connect( CSession * m_Session );
 	// 是否关闭
 	void Shutdown();
 };

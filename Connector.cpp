@@ -40,7 +40,7 @@ void * connect_thread(void * param )
 // 构造函数
 CConnector::CConnector()
 {
-	m_pConnectingList	= NULL;
+	m_pSession			= 0L;
 	m_bShutdown			= FALSE;
 	m_hThread			= 0;
 }
@@ -58,8 +58,6 @@ CConnector::~CConnector()
 // 初始化
 void CConnector::Init( CServerHandler *pHandler )
 {
-	m_pHandler = pHandler;
-	
 	// 发送信号
 	if ( sem_init(&m_semConnect,0,0)!=0 ) {
   		perror("Semaphore initialization failed");
@@ -71,7 +69,7 @@ void CConnector::Init( CServerHandler *pHandler )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 连接数据
-void CConnector::Connect( CSession * pSession )
+BOOL CConnector::Connect( CSession * pSession )
 {
 	// 连接数据
 	m_pSession = m_pSession;
