@@ -1,5 +1,5 @@
-#ifndef _ACCEPTOR_H_
-#define _ACCEPTOR_H_
+#ifndef _Acceptor_Headfile_
+#define _Acceptor_Headfile_
 
 #pragma once
 #include <Network.h>

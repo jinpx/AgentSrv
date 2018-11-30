@@ -6,7 +6,7 @@ EXEFILE = AgentServer
 OBJFILE = TraceService.o ThreadLock.o SocketOpt.o IniFile.o \
 		  Network.o Session.o ServerSession.o LogonSession.o GameSession.o \
 		  UserSession.o FunctionMap.o PacketHandler.o ServerInfo.o \
-		  Acceptor.o ServerHandler.o \
+		  Acceptor.o Connector.o ServerHandler.o \
 		  main.o
 
 
