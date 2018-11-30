@@ -1,7 +1,8 @@
 #ifndef _RecvBuffer_Headfile_
 #define _RecvBuffer_Headfile_
 
-#include "CircuitQueue.h"
+#include <Network.h>
+#include <CircuitQueue.h>
 /////////////////////////////////////////////////////////////////////////////////
 
 //Ω” ’ª∫¥Ê
