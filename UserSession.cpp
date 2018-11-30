@@ -1,4 +1,5 @@
-#include "UserSession.h"
+#include <PacketHandler.h>
+#include <UserSession.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 // 构造函数
@@ -40,6 +41,20 @@ VOID CUserSession::OnDisconnect()
 VOID CUserSession::UnGameServer()
 {
 	m_pGameServer = NULL;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+// 发送数据
+VOID CUserSession::OnRecv( BYTE *pMsg, WORD wSize )
+{
+	g_PacketHander.ParsePacket_CA( this, (MSG_BASE *)pMsg, wSize );
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+// 接收数据
+BOOL CUserSession::SendPacket( MSG_BASE * pMsg, WORD wSize )
+{
+	return CServerSession::SendPacket( pMsg, wSize );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
