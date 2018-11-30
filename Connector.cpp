@@ -1,5 +1,6 @@
 #include <Connector.h>
 #include <SocketOpt.h>
+#include <Session.h>
 
 /////////////////////////////////////////////////////////////////////////////////
 // 监听线程
@@ -26,8 +27,8 @@ void * connect_thread(void * param )
 		}
 		else
 		{
-			SocketOpt::Nonblocking( pSession->GetSocket() );
-			SocketOpt::DisableBuffering( pSession->GetSocket() );
+			CSocketOpt::Nonblocking( pSession->GetSocket() );
+			CSocketOpt::DisableBuffering( pSession->GetSocket() );
 		}
 	}
 
@@ -46,14 +47,10 @@ CConnector::CConnector()
 
 /////////////////////////////////////////////////////////////////////////////////
 // 析构函数
-CConnector::~CAcceptor()
+CConnector::~CConnector()
 {
 	if( !m_bShutdown ) {
 		Shutdown();
-	}
-
-	if( m_pConnectingList ) {
-		delete m_pConnectingList;
 	}
 }
 
