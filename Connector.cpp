@@ -69,7 +69,7 @@ void CConnector::Init( CServerHandler *pHandler )
 
 /////////////////////////////////////////////////////////////////////////////////
 // 连接数据
-BOOL CConnector::Connect( CSession * pSession )
+void CConnector::Connect( CSession * pSession )
 {
 	// 连接数据
 	m_pSession = m_pSession;

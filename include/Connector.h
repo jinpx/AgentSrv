@@ -33,7 +33,7 @@ public:
 	~CConnector();
 	
 	// 初始化数据
-	void Init( CServerHandler *pHandler  );
+	void Init( CServerHandler *pHandler );
 	// 开始连接
 	void Connect( CSession * m_Session );
 	// 是否关闭
